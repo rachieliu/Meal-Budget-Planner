@@ -7,6 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5A0306DB2B7ADB32000D979A /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0306DA2B7ADB32000D979A /* LoginView.swift */; };
+		5A0306DD2B7ADD45000D979A /* InputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0306DC2B7ADD45000D979A /* InputView.swift */; };
+		5A0306E02B7AE052000D979A /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0306DF2B7AE052000D979A /* WelcomeView.swift */; };
+		5A0306E22B7AE066000D979A /* SignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0306E12B7AE066000D979A /* SignupView.swift */; };
+		5A0306E52B7AF303000D979A /* BudgetSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0306E42B7AF302000D979A /* BudgetSelectView.swift */; };
+		5A0306E72B7AF321000D979A /* BreakfastSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0306E62B7AF321000D979A /* BreakfastSelectView.swift */; };
+		5A0306E92B7AF334000D979A /* LunchSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0306E82B7AF334000D979A /* LunchSelectView.swift */; };
+		5A0306EB2B7AF33E000D979A /* DinnerSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0306EA2B7AF33E000D979A /* DinnerSelectView.swift */; };
+		5A0306F12B7AF3D6000D979A /* MyMealsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0306F02B7AF3D6000D979A /* MyMealsView.swift */; };
+		5A0306F42B7B071C000D979A /* SelectBudgetButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0306F32B7B071C000D979A /* SelectBudgetButton.swift */; };
+		5A0306F62B7B157F000D979A /* SelectPreferenceButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0306F52B7B157F000D979A /* SelectPreferenceButton.swift */; };
+		5A0306F82B7B179D000D979A /* imageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0306F72B7B179D000D979A /* imageButton.swift */; };
+		5A0306FA2B7B1E9B000D979A /* MealSelectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0306F92B7B1E9B000D979A /* MealSelectionViewModel.swift */; };
+		5A0306FC2B7C358A000D979A /* MyAccountButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0306FB2B7C358A000D979A /* MyAccountButton.swift */; };
+		5A0306FE2B7C367E000D979A /* MyAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0306FD2B7C367E000D979A /* MyAccountView.swift */; };
+		5A0307032B7C55D2000D979A /* CustomTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0307022B7C55D2000D979A /* CustomTabView.swift */; };
+		5A0307052B7C8789000D979A /* GroceryListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0307042B7C8789000D979A /* GroceryListView.swift */; };
+		5A0307072B7C87E0000D979A /* MyBudgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0307062B7C87E0000D979A /* MyBudgetView.swift */; };
+		5A03070B2B7C87FF000D979A /* ExploreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A03070A2B7C87FF000D979A /* ExploreView.swift */; };
 		5A93793B2B76E09E004A84EB /* Meal_Budget_PlannerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A93793A2B76E09E004A84EB /* Meal_Budget_PlannerApp.swift */; };
 		5A93793D2B76E09E004A84EB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A93793C2B76E09E004A84EB /* ContentView.swift */; };
 		5A93793F2B76E0A1004A84EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5A93793E2B76E0A1004A84EB /* Assets.xcassets */; };
@@ -34,6 +53,25 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5A0306DA2B7ADB32000D979A /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		5A0306DC2B7ADD45000D979A /* InputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputView.swift; sourceTree = "<group>"; };
+		5A0306DF2B7AE052000D979A /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
+		5A0306E12B7AE066000D979A /* SignupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupView.swift; sourceTree = "<group>"; };
+		5A0306E42B7AF302000D979A /* BudgetSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetSelectView.swift; sourceTree = "<group>"; };
+		5A0306E62B7AF321000D979A /* BreakfastSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreakfastSelectView.swift; sourceTree = "<group>"; };
+		5A0306E82B7AF334000D979A /* LunchSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LunchSelectView.swift; sourceTree = "<group>"; };
+		5A0306EA2B7AF33E000D979A /* DinnerSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DinnerSelectView.swift; sourceTree = "<group>"; };
+		5A0306F02B7AF3D6000D979A /* MyMealsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMealsView.swift; sourceTree = "<group>"; };
+		5A0306F32B7B071C000D979A /* SelectBudgetButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectBudgetButton.swift; sourceTree = "<group>"; };
+		5A0306F52B7B157F000D979A /* SelectPreferenceButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectPreferenceButton.swift; sourceTree = "<group>"; };
+		5A0306F72B7B179D000D979A /* imageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = imageButton.swift; sourceTree = "<group>"; };
+		5A0306F92B7B1E9B000D979A /* MealSelectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealSelectionViewModel.swift; sourceTree = "<group>"; };
+		5A0306FB2B7C358A000D979A /* MyAccountButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAccountButton.swift; sourceTree = "<group>"; };
+		5A0306FD2B7C367E000D979A /* MyAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAccountView.swift; sourceTree = "<group>"; };
+		5A0307022B7C55D2000D979A /* CustomTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabView.swift; sourceTree = "<group>"; };
+		5A0307042B7C8789000D979A /* GroceryListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroceryListView.swift; sourceTree = "<group>"; };
+		5A0307062B7C87E0000D979A /* MyBudgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyBudgetView.swift; sourceTree = "<group>"; };
+		5A03070A2B7C87FF000D979A /* ExploreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreView.swift; sourceTree = "<group>"; };
 		5A9379372B76E09E004A84EB /* Meal Budget Planner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Meal Budget Planner.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A93793A2B76E09E004A84EB /* Meal_Budget_PlannerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meal_Budget_PlannerApp.swift; sourceTree = "<group>"; };
 		5A93793C2B76E09E004A84EB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -71,6 +109,118 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5A0306D32B7ADA4D000D979A /* App */ = {
+			isa = PBXGroup;
+			children = (
+				5A93793A2B76E09E004A84EB /* Meal_Budget_PlannerApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		5A0306D42B7ADA68000D979A /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				5A0306DC2B7ADD45000D979A /* InputView.swift */,
+				5A0307022B7C55D2000D979A /* CustomTabView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		5A0306D52B7ADA71000D979A /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				5A0306D82B7ADAED000D979A /* Authentication */,
+				5A0306E32B7AF2B9000D979A /* Get Started */,
+				5A0306ED2B7AF397000D979A /* Home Screen */,
+				5A0306FF2B7C414F000D979A /* Meal Screens */,
+				5A0306EC2B7AF34C000D979A /* Meal Selection */,
+				5A0306D92B7ADAFA000D979A /* Profile */,
+				5A0306D72B7ADADB000D979A /* Root */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		5A0306D62B7ADA79000D979A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				5A0306F92B7B1E9B000D979A /* MealSelectionViewModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		5A0306D72B7ADADB000D979A /* Root */ = {
+			isa = PBXGroup;
+			children = (
+				5A93793C2B76E09E004A84EB /* ContentView.swift */,
+			);
+			path = Root;
+			sourceTree = "<group>";
+		};
+		5A0306D82B7ADAED000D979A /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				5A0306DA2B7ADB32000D979A /* LoginView.swift */,
+				5A0306DF2B7AE052000D979A /* WelcomeView.swift */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
+		5A0306D92B7ADAFA000D979A /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				5A0306FD2B7C367E000D979A /* MyAccountView.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		5A0306E32B7AF2B9000D979A /* Get Started */ = {
+			isa = PBXGroup;
+			children = (
+				5A0306E42B7AF302000D979A /* BudgetSelectView.swift */,
+				5A0306E12B7AE066000D979A /* SignupView.swift */,
+			);
+			path = "Get Started";
+			sourceTree = "<group>";
+		};
+		5A0306EC2B7AF34C000D979A /* Meal Selection */ = {
+			isa = PBXGroup;
+			children = (
+				5A0306E62B7AF321000D979A /* BreakfastSelectView.swift */,
+				5A0306E82B7AF334000D979A /* LunchSelectView.swift */,
+				5A0306EA2B7AF33E000D979A /* DinnerSelectView.swift */,
+			);
+			path = "Meal Selection";
+			sourceTree = "<group>";
+		};
+		5A0306ED2B7AF397000D979A /* Home Screen */ = {
+			isa = PBXGroup;
+			children = (
+				5A0306F02B7AF3D6000D979A /* MyMealsView.swift */,
+				5A0307042B7C8789000D979A /* GroceryListView.swift */,
+				5A0307062B7C87E0000D979A /* MyBudgetView.swift */,
+				5A03070A2B7C87FF000D979A /* ExploreView.swift */,
+			);
+			path = "Home Screen";
+			sourceTree = "<group>";
+		};
+		5A0306F22B7B06F2000D979A /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				5A0306F32B7B071C000D979A /* SelectBudgetButton.swift */,
+				5A0306FB2B7C358A000D979A /* MyAccountButton.swift */,
+				5A0306F52B7B157F000D979A /* SelectPreferenceButton.swift */,
+				5A0306F72B7B179D000D979A /* imageButton.swift */,
+			);
+			path = Buttons;
+			sourceTree = "<group>";
+		};
+		5A0306FF2B7C414F000D979A /* Meal Screens */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Meal Screens";
+			sourceTree = "<group>";
+		};
 		5A93792E2B76E09E004A84EB = {
 			isa = PBXGroup;
 			children = (
@@ -94,8 +244,11 @@
 		5A9379392B76E09E004A84EB /* Meal Budget Planner */ = {
 			isa = PBXGroup;
 			children = (
-				5A93793A2B76E09E004A84EB /* Meal_Budget_PlannerApp.swift */,
-				5A93793C2B76E09E004A84EB /* ContentView.swift */,
+				5A0306F22B7B06F2000D979A /* Buttons */,
+				5A0306D32B7ADA4D000D979A /* App */,
+				5A0306D42B7ADA68000D979A /* Components */,
+				5A0306D52B7ADA71000D979A /* Core */,
+				5A0306D62B7ADA79000D979A /* Model */,
 				5A93793E2B76E0A1004A84EB /* Assets.xcassets */,
 				5A9379402B76E0A1004A84EB /* Preview Content */,
 			);
@@ -257,8 +410,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5A0306E52B7AF303000D979A /* BudgetSelectView.swift in Sources */,
+				5A0306E22B7AE066000D979A /* SignupView.swift in Sources */,
+				5A0306E72B7AF321000D979A /* BreakfastSelectView.swift in Sources */,
+				5A0306F12B7AF3D6000D979A /* MyMealsView.swift in Sources */,
+				5A0306FE2B7C367E000D979A /* MyAccountView.swift in Sources */,
+				5A0306E02B7AE052000D979A /* WelcomeView.swift in Sources */,
 				5A93793D2B76E09E004A84EB /* ContentView.swift in Sources */,
+				5A03070B2B7C87FF000D979A /* ExploreView.swift in Sources */,
+				5A0306F62B7B157F000D979A /* SelectPreferenceButton.swift in Sources */,
+				5A0306F42B7B071C000D979A /* SelectBudgetButton.swift in Sources */,
+				5A0306DD2B7ADD45000D979A /* InputView.swift in Sources */,
+				5A0306DB2B7ADB32000D979A /* LoginView.swift in Sources */,
+				5A0307052B7C8789000D979A /* GroceryListView.swift in Sources */,
+				5A0306E92B7AF334000D979A /* LunchSelectView.swift in Sources */,
+				5A0306FA2B7B1E9B000D979A /* MealSelectionViewModel.swift in Sources */,
+				5A0306EB2B7AF33E000D979A /* DinnerSelectView.swift in Sources */,
 				5A93793B2B76E09E004A84EB /* Meal_Budget_PlannerApp.swift in Sources */,
+				5A0307032B7C55D2000D979A /* CustomTabView.swift in Sources */,
+				5A0307072B7C87E0000D979A /* MyBudgetView.swift in Sources */,
+				5A0306F82B7B179D000D979A /* imageButton.swift in Sources */,
+				5A0306FC2B7C358A000D979A /* MyAccountButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -345,7 +517,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -399,7 +571,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
