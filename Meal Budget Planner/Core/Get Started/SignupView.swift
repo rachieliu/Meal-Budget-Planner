@@ -12,6 +12,8 @@ struct SignupView: View {
     @State private var fullname = ""
     @State private var password = ""
     @State private var confirmPassword = ""
+   // @State private var isEmailValid: Bool = true // Track email validation state
+    //@State private var validationError: String? // Validation error message
     
     var body: some View {
         ZStack {
@@ -32,7 +34,7 @@ struct SignupView: View {
                     .autocapitalization(.none)
                     
                     InputView(text: $fullname,
-                              title: "Full Name",
+                              title: "Name",
                               placeholder: "Enter your name",
                               isSecureField: true)
                     
@@ -64,12 +66,23 @@ struct SignupView: View {
                     }
                     .foregroundColor(.white)
                     .frame(width: UIScreen.main.bounds.width - 32, height: 48)
+                    .background(Color("PrimaryColor"))
+                    .cornerRadius(10)
+                    .padding(.top, 30)
+                   
                     
                 })
-                .background(Color("PrimaryColor"))
-                .cornerRadius(10)
-                .padding(.top, 30)
+               /* .onTapGesture{
+                    //create account when button is pressed
+                    createAccount()
+                }
                 
+                
+                if let error = validationError{
+                    Text(error)
+                        .foregroundColor(.red)
+                        .padding(.top, 8)
+                }*/
                 Spacer()
                 
                 NavigationLink(
@@ -87,6 +100,23 @@ struct SignupView: View {
             }
         }
     }
+   
+  /*  func isValidEmail(email: String) -> Bool {
+            let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
+            return NSPredicate(format: "SELF MATCHES %@", emailRegex).evaluate(with: email)
+        }
+    func createAccount() {
+            if !isValidEmail(email: email) {
+                // If email is invalid, set validation error
+                validationError = "Invalid email"
+            } else {
+                // If email is valid, reset validation error
+                validationError = nil
+                
+                // Perform further actions for account creation
+                // This could include password validation, submitting data to server, etc.
+            }
+        }*/
 }
 
 struct SignupView_Previews: PreviewProvider {

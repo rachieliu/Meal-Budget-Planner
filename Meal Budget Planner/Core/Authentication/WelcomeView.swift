@@ -39,7 +39,8 @@ struct WelcomeView: View {
                         
                         //destination = what page your going to, hide navigation bar to hide the back arrow
                         
-                        destination: SignupView(),
+                        destination: CreateAccountView()
+                        .navigationBarHidden(true),
                         label: {
                             PrimaryButton(title: "Get Started")
                                 

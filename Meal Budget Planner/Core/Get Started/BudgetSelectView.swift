@@ -19,6 +19,7 @@ struct BudgetSelectView: View {
     @State private var selected100 = false
     @State private var selected125 = false
     @State private var selected150 = false
+    @State private var isNextViewActive = false
     
     
     
@@ -107,31 +108,33 @@ struct BudgetSelectView: View {
                     .padding(.vertical, 20)
                    
                     
-                   
-                    NavigationLink(
-                        destination:
-                            BreakfastSelectView(),
-                        /*isActive: Binding<Bool>(
-                            get: { viewModel.selectedBudget != nil },
-                            set: { _ in }
-                        ),*/
-                            
-                        label:{
-                            HStack{
-                                Text("LET'S GO")
-                                    .fontWeight(.semibold)
-
-                                Image(systemName: "arrow.right")
-                            
-                        }
-                        .foregroundColor(.white)
-                        .frame(width: UIScreen.main.bounds.width - 32, height: 48)
-                        
-                    })
-                    .background(Color("PrimaryColor"))
-                    .cornerRadius(10)
-                    .padding(.top, 20 )
-                    
+                    Button(action: {
+                         // Trigger navigation only if a budget option is selected
+                         if selected75 || selected100 || selected125 || selected150 {
+                             isNextViewActive = true
+                         }
+                     }) {
+                         HStack{
+                             Text("LET'S GO")
+                                 .fontWeight(.semibold)
+                             Image(systemName: "arrow.right")
+                         }
+                         .foregroundColor(.white)
+                         .frame(width: UIScreen.main.bounds.width - 32, height: 48)
+                         .background(Color("PrimaryColor"))
+                         .cornerRadius(10)
+                         .padding(.top, 20 )
+                         .opacity((selected75 || selected100 || selected125 || selected150) ? 1.0 : 0.6)
+                     }
+                     .disabled(!(selected75 || selected100 || selected125 || selected150)) // Disable the button if no budget option is selected
+                     
+                     // Navigate to the next view when isNextViewActive becomes true
+                     NavigationLink(
+                         destination: BreakfastSelectView(),
+                         isActive: $isNextViewActive,
+                         label: { EmptyView() }
+                     )
+              
                     
                    
                     

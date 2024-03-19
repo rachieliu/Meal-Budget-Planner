@@ -12,6 +12,7 @@ class MealSelectionViewModel: ObservableObject {
     @Published var selectedMeals: Set<String> = Set()
     @Published var showAlert: Bool = false
     
+    
     //function so that if users select more than 3 an alert will show
     func toggleMealSelection(_ meal: String) {
         if selectedMeals.contains(meal) {
@@ -49,7 +50,7 @@ struct BreakfastSelectView: View {
                         .resizable()
                         .scaledToFill()
                         .frame(width:150, height: 100)
-                        .padding(EdgeInsets(top: -100, leading: 0, bottom: 0, trailing: 0))
+                        .padding(EdgeInsets(top: -75, leading: 0, bottom: 0, trailing: 0))
             
                     
             
@@ -64,7 +65,7 @@ struct BreakfastSelectView: View {
                         
                     
                     }
-                    .padding(.bottom, 50)
+                   // .padding(.bottom)
                  
                     
                     
@@ -108,25 +109,31 @@ struct BreakfastSelectView: View {
                     }
                     .padding(.top, 20)
                     .opacity(viewModel.selectedMeals.count <= 3 ? 0 : 1)
-                    
-                    NavigationLink(
-                        destination:
-                            LunchSelectView()
-                            .navigationBarHidden(true),
-                        label:{
+                    ZStack{
+                        NavigationLink(
+                            destination:
+                                LunchSelectView(),
+                            label:{
 
-                            Image(systemName: "arrow.right")
+                                Image(systemName: "arrow.right")
+                                    .foregroundColor(.white)
+                                    .frame(width: 50, height: 50)
+                                    .opacity(viewModel.selectedMeals.count == 3 ? 1 : 0.6)
+                                
                             
-                        
-                        .foregroundColor(.white)
-                        .frame(width: 50, height: 50)
-                        
-                        
-                    })
-                    .background(Color("PrimaryColor"))
-                    .cornerRadius(10)
-                    .padding(EdgeInsets(top: 0, leading: 300, bottom: 20, trailing: 20))
-                                    
+                            
+                            
+                            
+                            }
+                        )
+                      
+                        .background(Color("PrimaryColor").opacity(viewModel.selectedMeals.count == 3 ? 1 : 0.6))
+                        .cornerRadius(10)
+                        .padding(EdgeInsets(top: -50, leading: 300, bottom: 100, trailing: 20))
+                        .disabled(viewModel.selectedMeals.count != 3)
+                    }
+                    .navigationBarBackButtonHidden(true) 
+                    
                 }
             }
     }

@@ -46,7 +46,7 @@ struct DinnerSelectView: View {
                         .resizable()
                         .scaledToFill()
                         .frame(width:150, height: 100)
-                        .padding(EdgeInsets(top: -100, leading: 0, bottom: 0, trailing: 0))
+                        .padding(EdgeInsets(top: -75, leading: 0, bottom: 0, trailing: 0))
             
                     
             
@@ -61,7 +61,7 @@ struct DinnerSelectView: View {
                         
                     
                     }
-                    .padding(.bottom, 50)
+                   // .padding(.bottom, 50)
                  
                     
                     
@@ -117,14 +117,17 @@ struct DinnerSelectView: View {
                         
                         .foregroundColor(.white)
                         .frame(width: 50, height: 50)
-                        
+                        .opacity(viewModel.selectedMeals.count == 3 ? 1 : 0.6)
                         
                     })
-                    .background(Color("SecondaryColor"))
+                    .background(Color("SecondaryColor").opacity(viewModel.selectedMeals.count == 3 ? 1 : 0.6))
                     .cornerRadius(10)
-                    .padding(EdgeInsets(top: 0, leading: 300, bottom: 20, trailing: 20))
+                    .padding(EdgeInsets(top: -50, leading: 300, bottom: 100, trailing: 20))
+                    .disabled(viewModel.selectedMeals.count != 3)
+                    
                                     
             }
+                .navigationBarBackButtonHidden(true)
             }
     }
 }

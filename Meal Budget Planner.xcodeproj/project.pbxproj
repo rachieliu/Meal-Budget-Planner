@@ -26,6 +26,11 @@
 		5A0307052B7C8789000D979A /* GroceryListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0307042B7C8789000D979A /* GroceryListView.swift */; };
 		5A0307072B7C87E0000D979A /* MyBudgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0307062B7C87E0000D979A /* MyBudgetView.swift */; };
 		5A03070B2B7C87FF000D979A /* ExploreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A03070A2B7C87FF000D979A /* ExploreView.swift */; };
+		5A4452DF2BA9220E00F2BCD5 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A4452DE2BA9220E00F2BCD5 /* HeaderView.swift */; };
+		5A4452E52BA936DE00F2BCD5 /* CalendarDayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A4452E42BA936DE00F2BCD5 /* CalendarDayView.swift */; };
+		5A6D71672BA3EA7D00442BF1 /* SignupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6D71662BA3EA7D00442BF1 /* SignupViewModel.swift */; };
+		5A6D71692BA3EC3A00442BF1 /* CreateAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6D71682BA3EC3A00442BF1 /* CreateAccountView.swift */; };
+		5A6D716B2BA3EE3D00442BF1 /* EntryFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6D716A2BA3EE3D00442BF1 /* EntryFieldView.swift */; };
 		5A93793B2B76E09E004A84EB /* Meal_Budget_PlannerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A93793A2B76E09E004A84EB /* Meal_Budget_PlannerApp.swift */; };
 		5A93793D2B76E09E004A84EB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A93793C2B76E09E004A84EB /* ContentView.swift */; };
 		5A93793F2B76E0A1004A84EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5A93793E2B76E0A1004A84EB /* Assets.xcassets */; };
@@ -72,6 +77,11 @@
 		5A0307042B7C8789000D979A /* GroceryListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroceryListView.swift; sourceTree = "<group>"; };
 		5A0307062B7C87E0000D979A /* MyBudgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyBudgetView.swift; sourceTree = "<group>"; };
 		5A03070A2B7C87FF000D979A /* ExploreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreView.swift; sourceTree = "<group>"; };
+		5A4452DE2BA9220E00F2BCD5 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
+		5A4452E42BA936DE00F2BCD5 /* CalendarDayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDayView.swift; sourceTree = "<group>"; };
+		5A6D71662BA3EA7D00442BF1 /* SignupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewModel.swift; sourceTree = "<group>"; };
+		5A6D71682BA3EC3A00442BF1 /* CreateAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountView.swift; sourceTree = "<group>"; };
+		5A6D716A2BA3EE3D00442BF1 /* EntryFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryFieldView.swift; sourceTree = "<group>"; };
 		5A9379372B76E09E004A84EB /* Meal Budget Planner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Meal Budget Planner.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A93793A2B76E09E004A84EB /* Meal_Budget_PlannerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meal_Budget_PlannerApp.swift; sourceTree = "<group>"; };
 		5A93793C2B76E09E004A84EB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -121,7 +131,10 @@
 			isa = PBXGroup;
 			children = (
 				5A0306DC2B7ADD45000D979A /* InputView.swift */,
+				5A6D716A2BA3EE3D00442BF1 /* EntryFieldView.swift */,
+				5A4452DE2BA9220E00F2BCD5 /* HeaderView.swift */,
 				5A0307022B7C55D2000D979A /* CustomTabView.swift */,
+				5A4452E42BA936DE00F2BCD5 /* CalendarDayView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -144,6 +157,7 @@
 			isa = PBXGroup;
 			children = (
 				5A0306F92B7B1E9B000D979A /* MealSelectionViewModel.swift */,
+				5A6D71662BA3EA7D00442BF1 /* SignupViewModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -178,6 +192,7 @@
 			children = (
 				5A0306E42B7AF302000D979A /* BudgetSelectView.swift */,
 				5A0306E12B7AE066000D979A /* SignupView.swift */,
+				5A6D71682BA3EC3A00442BF1 /* CreateAccountView.swift */,
 			);
 			path = "Get Started";
 			sourceTree = "<group>";
@@ -411,21 +426,26 @@
 			buildActionMask = 2147483647;
 			files = (
 				5A0306E52B7AF303000D979A /* BudgetSelectView.swift in Sources */,
+				5A6D71692BA3EC3A00442BF1 /* CreateAccountView.swift in Sources */,
 				5A0306E22B7AE066000D979A /* SignupView.swift in Sources */,
 				5A0306E72B7AF321000D979A /* BreakfastSelectView.swift in Sources */,
 				5A0306F12B7AF3D6000D979A /* MyMealsView.swift in Sources */,
 				5A0306FE2B7C367E000D979A /* MyAccountView.swift in Sources */,
+				5A4452E52BA936DE00F2BCD5 /* CalendarDayView.swift in Sources */,
 				5A0306E02B7AE052000D979A /* WelcomeView.swift in Sources */,
 				5A93793D2B76E09E004A84EB /* ContentView.swift in Sources */,
+				5A6D716B2BA3EE3D00442BF1 /* EntryFieldView.swift in Sources */,
 				5A03070B2B7C87FF000D979A /* ExploreView.swift in Sources */,
 				5A0306F62B7B157F000D979A /* SelectPreferenceButton.swift in Sources */,
 				5A0306F42B7B071C000D979A /* SelectBudgetButton.swift in Sources */,
 				5A0306DD2B7ADD45000D979A /* InputView.swift in Sources */,
 				5A0306DB2B7ADB32000D979A /* LoginView.swift in Sources */,
 				5A0307052B7C8789000D979A /* GroceryListView.swift in Sources */,
+				5A4452DF2BA9220E00F2BCD5 /* HeaderView.swift in Sources */,
 				5A0306E92B7AF334000D979A /* LunchSelectView.swift in Sources */,
 				5A0306FA2B7B1E9B000D979A /* MealSelectionViewModel.swift in Sources */,
 				5A0306EB2B7AF33E000D979A /* DinnerSelectView.swift in Sources */,
+				5A6D71672BA3EA7D00442BF1 /* SignupViewModel.swift in Sources */,
 				5A93793B2B76E09E004A84EB /* Meal_Budget_PlannerApp.swift in Sources */,
 				5A0307032B7C55D2000D979A /* CustomTabView.swift in Sources */,
 				5A0307072B7C87E0000D979A /* MyBudgetView.swift in Sources */,

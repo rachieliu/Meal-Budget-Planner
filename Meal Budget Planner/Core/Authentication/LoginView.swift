@@ -77,7 +77,7 @@ struct LoginView: View {
                     Spacer()
                     
                     NavigationLink(
-                        destination: SignupView().navigationBarHidden(true),
+                        destination: CreateAccountView().navigationBarHidden(true),
                         label: {
                             HStack(spacing: 3){
                                 Text("Don't have an account?")
@@ -96,7 +96,9 @@ struct LoginView: View {
                     
                     
                 }
+                
             }
+            .padding()
         }
     }
 }

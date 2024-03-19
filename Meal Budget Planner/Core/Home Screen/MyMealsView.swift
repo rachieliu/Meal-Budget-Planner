@@ -8,350 +8,164 @@
 import SwiftUI
 
 struct MyMealsView: View {
+    @State private var selectedDate = Date()
+    let currentDate = Date()
+    let calendar = Calendar.current
+   
     
-   // @State var tabSelection = 3
+    @State private var tabSelection = 2
 
-   /* let tabBarItems: [(image: String, title: String)] = [
-        
-        ("GroceryIcon", "Grocery"),
-        ("ExploreIcon", "Explore"),
-        ("HomeIcon", "My Meals"),
-        ("BudgetIcon", "My Budget")
 
-    ]*/
     
     var body: some View {
         
         
         NavigationView{
             
-/****------------------icon and ACCOUNT PROFILE BUTTON------------------- **/
-            
-            ZStack {
-                Color.white.edgesIgnoringSafeArea(.all)
-                
-                Image("Icon")
-                    .resizable()
-                    .scaledToFill()
-                    .frame(width:150, height: 100)
-                    .padding(EdgeInsets(top: 0, leading: 0, bottom: 750, trailing: 0))
+            VStack(spacing: 0){
+                HeaderView()
                 
                 
-                NavigationLink(
-                    destination:
-                        MyAccountView(),
-                    label:{
+                
+                
+                Text("My Meal Plan")
+                    .fontWeight(.bold)
+                    //.padding(.top, 10)
+                    .padding(.bottom)
+                
+                GeometryReader { geometry in
 
-                        Image(systemName: "heart.fill")
-                        
-                    
-                    .foregroundColor(.black)
-                    .frame(width: 50, height: 50)
-                    
-                    
-                })
-                .background(Color("PrimaryColor"))
-                .cornerRadius(50)
-                .padding(EdgeInsets(top: 0, leading: 300, bottom: 750, trailing: 20))
-                //Color("Color").edgesIgnoringSafeArea(.all)
-                
-               
-    /****------------------PAGE NAME (MY MEAL PLAN------------------- **/
-                
-                VStack{
-                    Text("My Meal Plan")
-                        .fontWeight(.bold)
-                        .padding(EdgeInsets(top: -60, leading: 0, bottom: 0, trailing: 0))
-                    
-                    
-    /****------------------SCROLLING CALENDAR------------------- **/
-                   
-                    HStack{
-                        
-                        NavigationLink(
-                            destination:
-                                LunchSelectView()
-                                .navigationBarHidden(true),
-                            label:{
-
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        HStack(spacing: -10) {
+                            
+                            Button(action: {
+                                self.selectedDate = self.calendar.date(byAdding: .weekOfYear, value: -1, to: self.selectedDate)!
+                            }
+                        )
+                            {
                                 Image(systemName: "arrow.left")
-                                
+                                    .font(.system(size: 15))
+                                    //.padding()
+                                    .foregroundColor(.black)
+                                    .padding(.leading, 10)
+                                    .padding(.trailing, 5)
+                            }
                             
-                            .foregroundColor(.black)
-                            .frame(width: 35, height: 35)
+                            Spacer(minLength: (geometry.size.width / 7 - 20) / 2)
                             
+                            ForEach(0..<7) { index in
+                                let date = calendar.date(byAdding: .day, value: index, to: startOfWeek()) ?? Date()
+                                let isSelected = calendar.isDate(date, inSameDayAs: currentDate)
+                                CalendarDayView(date: date, isSelected: isSelected)
+                                    .frame(width: geometry.size.width / 7)
+                            }
+                            Spacer(minLength: (geometry.size.width / 7 - 20) / 2)
                             
-                        })
-                        .background(Color("color"))
-                        .cornerRadius(10)
-                        
-                        
-                        
-                        NavigationLink(
-                            destination:
-                                MyAccountView(),
-                            label:{
-
-                                Image(systemName: "heart.fill")
-                                
-                            
-                            .foregroundColor(.white)
-                            .frame(width: 35, height: 35)
-                            
-                            
-                        })
-                        .background(Color("PrimaryColor"))
-                        .cornerRadius(50)
-                        NavigationLink(
-                            destination:
-                                MyAccountView(),
-                            label:{
-
-                                Image(systemName: "heart.fill")
-                                
-                            
-                            .foregroundColor(.white)
-                            .frame(width: 35, height: 35)
-                            
-                            
-                        })
-                        .background(Color.gray)
-                        .cornerRadius(50)
-                        NavigationLink(
-                            destination:
-                                MyAccountView(),
-                            label:{
-
-                                Image(systemName: "heart.fill")
-                                
-                            
-                            .foregroundColor(.white)
-                            .frame(width: 35, height: 35)
-                            
-                            
-                        })
-                        .background(Color.gray)
-                        .cornerRadius(50)
-                        NavigationLink(
-                            destination:
-                                MyAccountView(),
-                            label:{
-
-                                Image(systemName: "heart.fill")
-                                
-                            
-                            .foregroundColor(.white)
-                            .frame(width: 35, height: 35)
-                            
-                            
-                        })
-                        .background(Color.gray)
-                        .cornerRadius(50)
-                        
-                        
-                        NavigationLink(
-                            destination:
-                                MyAccountView(),
-                            label:{
-
-                                Image(systemName: "heart.fill")
-                                
-                            
-                            .foregroundColor(.white)
-                            .frame(width: 35, height: 35)
-                            
-                            
-                        })
-                        .background(Color.gray)
-                        .cornerRadius(50)
-                        
-                        
-                        NavigationLink(
-                            destination:
-                                MyAccountView(),
-                            label:{
-
-                                Image(systemName: "heart.fill")
-                                
-                            
-                            .foregroundColor(.white)
-                            .frame(width: 35, height: 35)
-                            
-                            
-                        })
-                        .background(Color.gray)
-                        .cornerRadius(50)
-                        
-                        NavigationLink(
-                            destination:
-                                MyAccountView(),
-                            label:{
-
-                                Image(systemName: "heart.fill")
-                                
-                            
-                            .foregroundColor(.white)
-                            .frame(width: 35, height: 35)
-                            
-                            
-                        })
-                        .background(Color.gray)
-                        .cornerRadius(50)
-                       // .padding(EdgeInsets(top: 0, leading: 300, bottom: 750, trailing: 20))
-                        
-                        NavigationLink(
-                            destination:
-                                LunchSelectView()
-                                .navigationBarHidden(true),
-                            label:{
-
+                            Button(action: {
+                                self.selectedDate = self.calendar.date(byAdding: .weekOfYear, value: 1, to: self.selectedDate)!
+                            }) {
                                 Image(systemName: "arrow.right")
-                                
+                                    .foregroundColor(.black)
+                                    .font(.system(size: 15))
+                                    .padding(.trailing, 10)
+                                    .padding(.leading, 5)
+                            }
                             
-                            .foregroundColor(.black)
-                            .frame(width: 35, height: 35)
-                            
-                            
-                        })
-                        .background(Color("Color"))
-                        .cornerRadius(10)
-                        
-                        
-                    
+                        }
+    
                     }
-                    .frame(width: UIScreen.main.bounds.width, height: 50)
-                    .background(Color("Color"))
-                    .padding(EdgeInsets(top: -35, leading: 0, bottom: 10, trailing: 0))
-                    
-                    
-                    
-                    
-  /****-----------------MEAL BUTTONS-------------------------------------------- **/
-                    VStack{
-                        VStack{
-                            Text("B R E A K F A S T")
-                                .font(.system(size: 20))
-                                .fontWeight(.bold)
-                                .padding(EdgeInsets(top: 0, leading: -65, bottom: -200, trailing: 140))
-                                
-                            
-                            NavigationLink(
-                                destination:
-                                    BudgetSelectView(),
-                                label:{
-                                    HStack{
-                                        Text("Meal Name")
-                                            .fontWeight(.semibold)
-                                            .padding(EdgeInsets(top: 0, leading: 15, bottom: 0, trailing: 50))
-                                            
-
-                                        Text("...")
-                                            .font(.system(size: 30))
-                                            .fontWeight(.bold)
-                                            .padding(EdgeInsets(top: 0, leading: 130, bottom: 15, trailing: 15))
-                                    
-                                }
-                                .foregroundColor(.black)
-                                .frame(width: UIScreen.main.bounds.width - 30, height: 80)
-                                
-                            })
-                            .background(Color("PrimaryColor"))
-                            .cornerRadius(20)
-                            .padding(.top, 20)
-                        }
-                        
-                        VStack{
-                            Text("L U N C H")
-                                .font(.system(size: 20))
-                                .fontWeight(.bold)
-                                .padding(EdgeInsets(top: 20, leading: -65, bottom: -90, trailing: 200))
-                            
-                            NavigationLink(
-                                destination:
-                                    BudgetSelectView(),
-                                label:{
-                                    HStack{
-                                        Text("Meal Name")
-                                            .fontWeight(.semibold)
-                                            .padding(EdgeInsets(top: 0, leading: 15, bottom: 0, trailing: 50))
-                                            
-
-                                        Text("...")
-                                            .font(.system(size: 30))
-                                            .fontWeight(.bold)
-                                            .padding(EdgeInsets(top: 0, leading: 130, bottom: 15, trailing: 15))
-                                    
-                                }
-                                .foregroundColor(.black)
-                                .frame(width: UIScreen.main.bounds.width - 30, height: 80)
-                                
-                            })
-                            .background(Color("PrimaryColor"))
-                            .cornerRadius(20)
-                            .padding(.top, 40)
-                        }
-                        
-                        VStack{
-                            Text("D I N N E R")
-                                .font(.system(size: 20))
-                                .fontWeight(.bold)
-                                .padding(EdgeInsets(top: 20, leading: -65, bottom: -90, trailing: 200))
-                            
-                            NavigationLink(
-                                destination:
-                                    BudgetSelectView(),
-                                label:{
-                                    HStack{
-                                        Text("Meal Name")
-                                            .fontWeight(.semibold)
-                                            .padding(EdgeInsets(top: 0, leading: 15, bottom: 0, trailing: 50))
-                                            
-
-                                        Text("...")
-                                            .font(.system(size: 30))
-                                            .fontWeight(.bold)
-                                            .padding(EdgeInsets(top: 0, leading: 130, bottom: 15, trailing: 15))
-                                    
-                                }
-                                .foregroundColor(.black)
-                                .frame(width: UIScreen.main.bounds.width - 30, height: 80)
-                                
-                            })
-                            .background(Color("PrimaryColor"))
-                            .cornerRadius(20)
-                            .padding(EdgeInsets(top: 40, leading: 0, bottom: 40, trailing: 0))
-                        }
-                    }
-                    
-                    .padding()
-                    
-                    /*-----------NAVIGATION BAR-------------------------------------------*/
-                                        
-                   CustomTabView(tabSelection: .constant(3))
-                                           .frame(height:80)
-                    
-                    
-/*-----------NAVIGATION BAR-------------------------------------------
-                    
-                    CustomTabView(tabSelection: $tabSelection, tabBarItems:[
-                                ("GroceryIcon", "Grocery", GroceryListView()),
-                                ("ExploreIcon", "Explore", ExploreView()),
-                                ("HomeIcon", "My Meals", MyMealsView()), // Use MyMealsView for the "My Meals" tab
-                                ("BudgetIcon", "My Budget", MyBudgetView())
-                                ])*/
-                    .padding(.bottom, -200)
-                    
                     
                 }
+                Divider()
+                    .padding(.bottom, -50)
+                
+                
+               
+              
+                VStack(spacing: 0) {
+                    MealCategoryView(category: "B R E A K F A S T")
+                    MealButton(title: "Meal Name")
+                    MealCategoryView(category: "L U N C H")
+                    MealButton(title: "Meal Name")
+                    MealCategoryView(category: "D I N N E R ")
+                    MealButton(title: "Meal Name")
+                }
+                .padding()
+                Spacer()
+                CustomTabView(tabSelection: $tabSelection)
+                
+                
+                 // Pushes content to the top
+                
+                
+                
+                    
                 
             }
+            .edgesIgnoringSafeArea(.bottom)
+            .navigationBarHidden(true)
+            
         }
     }
+    private func startOfWeek() -> Date {
+        let today = calendar.startOfDay(for: currentDate)
+        let dayOfWeek = calendar.component(.weekday, from: today)
+        let offset = (dayOfWeek - 2) % 7 // Sunday is the last day of the week, so we use modulo 7
+        return calendar.date(byAdding: .day, value: -offset, to: today)!
+    }
 }
+            
+
+
+
+struct MealButton: View {
+    let title: String
+    
+    var body: some View {
+        NavigationLink(destination: BudgetSelectView()) {
+            HStack {
+                Text(title)
+                    //.fontWeight(.bold)
+                    .font(.system(size: 20))
+                    .foregroundColor(.white)
+                    .padding(.vertical, 20)
+                    .padding(.horizontal, 20)
+                    //.background(Color("PrimaryColor"))
+                   // .cornerRadius(20)
+                
+                Spacer()
+                
+                Text("...")
+                    //.fontWeight(.bold)
+                    .font(.system(size: 30))
+                    .foregroundColor(Color.white)
+                    .padding(.trailing, 15)
+                    .padding(.bottom)
+            }
+        }
+        .background(Color("PrimaryColor"))
+        .cornerRadius(20)
+        
+    }
+}
+
 
 struct MyMealsView_Previews: PreviewProvider {
     static var previews: some View {
         MyMealsView()
             
+    }
+}
+
+struct MealCategoryView: View {
+    let category: String
+    
+    var body: some View {
+        Text(category)
+            //.fontWeight(.bold)
+            .font(.system(size: 20))
+
+            .padding(.leading,-140)
+            .padding(.top)
     }
 }
