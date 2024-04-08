@@ -19,7 +19,7 @@ struct HeaderView: View {
                     .padding(.leading, 60) // Adjusted padding for right spacing
                 Spacer()
                 
-                NavigationLink(destination: MyAccountView()) {
+                NavigationLink(destination: MyAccountView()){
                     Image("Account")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
@@ -30,9 +30,11 @@ struct HeaderView: View {
                 }
             }
             .padding(.horizontal)
-            .padding(.top, -50)
+            //.padding(.top, -100)
         }
-        .padding(.top, UIApplication.shared.windows.first?.safeAreaInsets.top) // Use safeAreaInsets
+        //.edgesIgnoringSafeArea(.top)
+        
+        
         
     }
 }
