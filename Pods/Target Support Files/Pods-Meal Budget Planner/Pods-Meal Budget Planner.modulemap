@@ -1,0 +1,6 @@
+framework module Pods_Meal_Budget_Planner {
+  umbrella header "Pods-Meal Budget Planner-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -63,6 +63,14 @@
 		5A93794C2B76E0A1004A84EB /* Meal_Budget_PlannerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A93794B2B76E0A1004A84EB /* Meal_Budget_PlannerTests.swift */; };
 		5A9379562B76E0A1004A84EB /* Meal_Budget_PlannerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9379552B76E0A1004A84EB /* Meal_Budget_PlannerUITests.swift */; };
 		5A9379582B76E0A1004A84EB /* Meal_Budget_PlannerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9379572B76E0A1004A84EB /* Meal_Budget_PlannerUITestsLaunchTests.swift */; };
+		5A94EFB92BC51C6E00792C4D /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 5A94EFB82BC51C6E00792C4D /* FirebaseAnalytics */; };
+		5A94EFC52BC51C6E00792C4D /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 5A94EFC42BC51C6E00792C4D /* FirebaseAuth */; };
+		5A94EFCB2BC51C6E00792C4D /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 5A94EFCA2BC51C6E00792C4D /* FirebaseDatabase */; };
+		5A94EFCD2BC51C6E00792C4D /* FirebaseDatabaseSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 5A94EFCC2BC51C6E00792C4D /* FirebaseDatabaseSwift */; };
+		5A94EFEF2BC521CA00792C4D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5A94EFEE2BC521CA00792C4D /* GoogleService-Info.plist */; };
+		5A94EFF02BC5227100792C4D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5A94EFEE2BC521CA00792C4D /* GoogleService-Info.plist */; };
+		5A94EFF12BC5227200792C4D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5A94EFEE2BC521CA00792C4D /* GoogleService-Info.plist */; };
+		F19C3936F3D95742A7A594F5 /* Pods_Meal_Budget_Planner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B50189320223C0E1FCBCBB82 /* Pods_Meal_Budget_Planner.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +91,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1538E60F5877B4E6A7F9F8DB /* Pods-Meal Budget Planner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Meal Budget Planner.release.xcconfig"; path = "Target Support Files/Pods-Meal Budget Planner/Pods-Meal Budget Planner.release.xcconfig"; sourceTree = "<group>"; };
 		5A0306DA2B7ADB32000D979A /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		5A0306DC2B7ADD45000D979A /* InputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputView.swift; sourceTree = "<group>"; };
 		5A0306DF2B7AE052000D979A /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
@@ -142,6 +151,9 @@
 		5A9379512B76E0A1004A84EB /* Meal Budget PlannerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Meal Budget PlannerUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A9379552B76E0A1004A84EB /* Meal_Budget_PlannerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meal_Budget_PlannerUITests.swift; sourceTree = "<group>"; };
 		5A9379572B76E0A1004A84EB /* Meal_Budget_PlannerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meal_Budget_PlannerUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		5A94EFEE2BC521CA00792C4D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../GoogleService-Info.plist"; sourceTree = "<group>"; };
+		B50189320223C0E1FCBCBB82 /* Pods_Meal_Budget_Planner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Meal_Budget_Planner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DF644928602C802F944E8C35 /* Pods-Meal Budget Planner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Meal Budget Planner.debug.xcconfig"; path = "Target Support Files/Pods-Meal Budget Planner/Pods-Meal Budget Planner.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,6 +161,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5A94EFCB2BC51C6E00792C4D /* FirebaseDatabase in Frameworks */,
+				5A94EFB92BC51C6E00792C4D /* FirebaseAnalytics in Frameworks */,
+				5A94EFC52BC51C6E00792C4D /* FirebaseAuth in Frameworks */,
+				5A94EFCD2BC51C6E00792C4D /* FirebaseDatabaseSwift in Frameworks */,
+				F19C3936F3D95742A7A594F5 /* Pods_Meal_Budget_Planner.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -169,6 +186,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0BC93A752D7424594DC7A832 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				DF644928602C802F944E8C35 /* Pods-Meal Budget Planner.debug.xcconfig */,
+				1538E60F5877B4E6A7F9F8DB /* Pods-Meal Budget Planner.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		45F4833582A45DF024FCE00A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B50189320223C0E1FCBCBB82 /* Pods_Meal_Budget_Planner.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		5A0306D32B7ADA4D000D979A /* App */ = {
 			isa = PBXGroup;
 			children = (
@@ -403,6 +437,8 @@
 				5A93794A2B76E0A1004A84EB /* Meal Budget PlannerTests */,
 				5A9379542B76E0A1004A84EB /* Meal Budget PlannerUITests */,
 				5A9379382B76E09E004A84EB /* Products */,
+				0BC93A752D7424594DC7A832 /* Pods */,
+				45F4833582A45DF024FCE00A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -429,6 +465,7 @@
 				5A884CCC2BC14FF900D861A5 /* ViewModel */,
 				5A93793E2B76E0A1004A84EB /* Assets.xcassets */,
 				5A9379402B76E0A1004A84EB /* Preview Content */,
+				5A94EFEE2BC521CA00792C4D /* GoogleService-Info.plist */,
 			);
 			path = "Meal Budget Planner";
 			sourceTree = "<group>";
@@ -465,15 +502,23 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5A93795B2B76E0A1004A84EB /* Build configuration list for PBXNativeTarget "Meal Budget Planner" */;
 			buildPhases = (
+				B708A021205641E6C280F2F4 /* [CP] Check Pods Manifest.lock */,
 				5A9379332B76E09E004A84EB /* Sources */,
 				5A9379342B76E09E004A84EB /* Frameworks */,
 				5A9379352B76E09E004A84EB /* Resources */,
+				C2867F9BE272DFDAE827FAB3 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = "Meal Budget Planner";
+			packageProductDependencies = (
+				5A94EFB82BC51C6E00792C4D /* FirebaseAnalytics */,
+				5A94EFC42BC51C6E00792C4D /* FirebaseAuth */,
+				5A94EFCA2BC51C6E00792C4D /* FirebaseDatabase */,
+				5A94EFCC2BC51C6E00792C4D /* FirebaseDatabaseSwift */,
+			);
 			productName = "Meal Budget Planner";
 			productReference = 5A9379372B76E09E004A84EB /* Meal Budget Planner.app */;
 			productType = "com.apple.product-type.application";
@@ -546,6 +591,9 @@
 				Base,
 			);
 			mainGroup = 5A93792E2B76E09E004A84EB;
+			packageReferences = (
+				5A94EFB72BC5171200792C4D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = 5A9379382B76E09E004A84EB /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -564,6 +612,7 @@
 			files = (
 				5A9379422B76E0A1004A84EB /* Preview Assets.xcassets in Resources */,
 				5A93793F2B76E0A1004A84EB /* Assets.xcassets in Resources */,
+				5A94EFEF2BC521CA00792C4D /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -571,6 +620,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5A94EFF02BC5227100792C4D /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -578,10 +628,53 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5A94EFF12BC5227200792C4D /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		B708A021205641E6C280F2F4 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Meal Budget Planner-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C2867F9BE272DFDAE827FAB3 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Meal Budget Planner/Pods-Meal Budget Planner-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Meal Budget Planner/Pods-Meal Budget Planner-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Meal Budget Planner/Pods-Meal Budget Planner-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		5A9379332B76E09E004A84EB /* Sources */ = {
@@ -791,6 +884,7 @@
 		};
 		5A93795C2B76E0A1004A84EB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DF644928602C802F944E8C35 /* Pods-Meal Budget Planner.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -809,6 +903,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "CSCI440.Meal-Budget-Planner";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -819,6 +914,7 @@
 		};
 		5A93795D2B76E0A1004A84EB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1538E60F5877B4E6A7F9F8DB /* Pods-Meal Budget Planner.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -837,6 +933,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "CSCI440.Meal-Budget-Planner";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -957,6 +1054,36 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		5A94EFB72BC5171200792C4D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.21.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		5A94EFB82BC51C6E00792C4D /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = FirebaseAnalytics;
+		};
+		5A94EFC42BC51C6E00792C4D /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = FirebaseAuth;
+		};
+		5A94EFCA2BC51C6E00792C4D /* FirebaseDatabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = FirebaseDatabase;
+		};
+		5A94EFCC2BC51C6E00792C4D /* FirebaseDatabaseSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = FirebaseDatabaseSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 5A93792F2B76E09E004A84EB /* Project object */;
 }
