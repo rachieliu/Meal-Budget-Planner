@@ -45,7 +45,7 @@ struct ExploreView: View {
                     
                         VStack{
                         // Display content based on the selected tab
-                            if let selectedBoxId = selectedBoxId {
+                            if selectedBoxId != nil {
                                 switch index {
                                 case 0:
                                     if let selectedBoxId = selectedBoxId, selectedBoxId == 0 {

@@ -22,6 +22,7 @@
 		5A0307052B7C8789000D979A /* GroceryListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0307042B7C8789000D979A /* GroceryListView.swift */; };
 		5A0307072B7C87E0000D979A /* MyBudgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0307062B7C87E0000D979A /* MyBudgetView.swift */; };
 		5A03070B2B7C87FF000D979A /* ExploreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A03070A2B7C87FF000D979A /* ExploreView.swift */; };
+		5A0F28A62BC5051700DD3EEC /* IngredientModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0F28A52BC5051700DD3EEC /* IngredientModel.swift */; };
 		5A4452DF2BA9220E00F2BCD5 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A4452DE2BA9220E00F2BCD5 /* HeaderView.swift */; };
 		5A4452E52BA936DE00F2BCD5 /* CalendarDayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A4452E42BA936DE00F2BCD5 /* CalendarDayView.swift */; };
 		5A4452E72BA9729E00F2BCD5 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A4452E62BA9729E00F2BCD5 /* TabBarView.swift */; };
@@ -54,7 +55,6 @@
 		5A884CED2BC15B4F00D861A5 /* ImageLoaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A884CEC2BC15B4F00D861A5 /* ImageLoaderView.swift */; };
 		5A884CEF2BC15BF600D861A5 /* RecipeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A884CEE2BC15BF600D861A5 /* RecipeViewModel.swift */; };
 		5A884CF12BC15C2A00D861A5 /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A884CF02BC15C2A00D861A5 /* Keys.swift */; };
-		5A884CF32BC15DD600D861A5 /* IngredientModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A884CF22BC15DD600D861A5 /* IngredientModel.swift */; };
 		5A884CF52BC15F1600D861A5 /* InstructionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A884CF42BC15F1600D861A5 /* InstructionsView.swift */; };
 		5A93793B2B76E09E004A84EB /* Meal_Budget_PlannerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A93793A2B76E09E004A84EB /* Meal_Budget_PlannerApp.swift */; };
 		5A93793D2B76E09E004A84EB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A93793C2B76E09E004A84EB /* ContentView.swift */; };
@@ -98,6 +98,7 @@
 		5A0307042B7C8789000D979A /* GroceryListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroceryListView.swift; sourceTree = "<group>"; };
 		5A0307062B7C87E0000D979A /* MyBudgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyBudgetView.swift; sourceTree = "<group>"; };
 		5A03070A2B7C87FF000D979A /* ExploreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreView.swift; sourceTree = "<group>"; };
+		5A0F28A52BC5051700DD3EEC /* IngredientModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientModel.swift; sourceTree = "<group>"; };
 		5A4452DE2BA9220E00F2BCD5 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		5A4452E42BA936DE00F2BCD5 /* CalendarDayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDayView.swift; sourceTree = "<group>"; };
 		5A4452E62BA9729E00F2BCD5 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
@@ -130,7 +131,6 @@
 		5A884CEC2BC15B4F00D861A5 /* ImageLoaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoaderView.swift; sourceTree = "<group>"; };
 		5A884CEE2BC15BF600D861A5 /* RecipeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeViewModel.swift; sourceTree = "<group>"; };
 		5A884CF02BC15C2A00D861A5 /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
-		5A884CF22BC15DD600D861A5 /* IngredientModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientModel.swift; sourceTree = "<group>"; };
 		5A884CF42BC15F1600D861A5 /* InstructionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionsView.swift; sourceTree = "<group>"; };
 		5A9379372B76E09E004A84EB /* Meal Budget Planner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Meal Budget Planner.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A93793A2B76E09E004A84EB /* Meal_Budget_PlannerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meal_Budget_PlannerApp.swift; sourceTree = "<group>"; };
@@ -205,7 +205,7 @@
 			isa = PBXGroup;
 			children = (
 				5A884CCF2BC150DE00D861A5 /* RecipeModel.swift */,
-				5A884CF22BC15DD600D861A5 /* IngredientModel.swift */,
+				5A0F28A52BC5051700DD3EEC /* IngredientModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -238,13 +238,6 @@
 				5A0306EA2B7AF33E000D979A /* DinnerSelectView.swift */,
 			);
 			path = "Meal Selection";
-			sourceTree = "<group>";
-		};
-		5A0306F22B7B06F2000D979A /* Buttons */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Buttons;
 			sourceTree = "<group>";
 		};
 		5A0F289E2BC4FC0600DD3EEC /* Starting Views */ = {
@@ -428,7 +421,6 @@
 			children = (
 				5A0306D32B7ADA4D000D979A /* App */,
 				5A884CDB2BC1540300D861A5 /* Utils */,
-				5A0306F22B7B06F2000D979A /* Buttons */,
 				5A0306D42B7ADA68000D979A /* Components */,
 				5A0F289E2BC4FC0600DD3EEC /* Starting Views */,
 				5A0306D52B7ADA71000D979A /* Main Views */,
@@ -601,6 +593,7 @@
 				5A884CCB2BC14FE400D861A5 /* ExplorePageView.swift in Sources */,
 				5A884CED2BC15B4F00D861A5 /* ImageLoaderView.swift in Sources */,
 				5A4453032BAB9A7200F2BCD5 /* MealOptionButton.swift in Sources */,
+				5A0F28A62BC5051700DD3EEC /* IngredientModel.swift in Sources */,
 				5A6D71692BA3EC3A00442BF1 /* CreateAccountView.swift in Sources */,
 				5A0306E22B7AE066000D979A /* SignupView.swift in Sources */,
 				5A884CF52BC15F1600D861A5 /* InstructionsView.swift in Sources */,
@@ -624,7 +617,6 @@
 				5A0306DD2B7ADD45000D979A /* InputView.swift in Sources */,
 				5A4452EB2BA9843D00F2BCD5 /* FirstBudgetBreakfast.swift in Sources */,
 				5A0306DB2B7ADB32000D979A /* LoginView.swift in Sources */,
-				5A884CF32BC15DD600D861A5 /* IngredientModel.swift in Sources */,
 				5A4453062BABA6BA00F2BCD5 /* BreakfastItemsView.swift in Sources */,
 				5A0307052B7C8789000D979A /* GroceryListView.swift in Sources */,
 				5A4452DF2BA9220E00F2BCD5 /* HeaderView.swift in Sources */,
