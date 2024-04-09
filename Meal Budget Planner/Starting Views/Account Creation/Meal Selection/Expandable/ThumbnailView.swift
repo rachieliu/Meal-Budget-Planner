@@ -7,12 +7,15 @@
 
 import SwiftUI
 
-struct ThumbnailView: View {
+
+struct ThumbnailView: View, Identifiable {
+    var id = UUID()
+    @ViewBuilder var content: any View
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack {
+            AnyView(content)
+        }
     }
 }
 
-#Preview {
-    ThumbnailView()
-}

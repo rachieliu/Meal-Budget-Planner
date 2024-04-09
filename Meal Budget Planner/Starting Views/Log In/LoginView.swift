@@ -6,10 +6,15 @@
 //
 
 import SwiftUI
+import Firebase
+import FirebaseCore
+
 
 struct LoginView: View {
     @State private var email = ""
     @State private var password = ""
+    @ObservedObject var viewModel = LoginViewModel()
+    @State private var isAuthenticated = false
   
     
     var isSignInDisabled: Bool {
@@ -52,8 +57,8 @@ struct LoginView: View {
                     
                     NavigationLink(
                         destination:
-                            TabBarView()
-                            .navigationBarHidden(true),
+                            TabBarView().navigationBarHidden(true),
+                        isActive: $isAuthenticated,
                         label:{
                             HStack{
                                 Text("SIGN IN")
@@ -69,6 +74,12 @@ struct LoginView: View {
                         .disabled(isSignInDisabled)
                         
                     })
+                    .onTapGesture {
+                        print("On tap gesture pressed")
+                        viewModel.loginUser(email: email, password: password){
+                            success in isAuthenticated = success
+                        }
+                    }
 
                     .padding(.top, 24)
                     

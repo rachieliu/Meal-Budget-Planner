@@ -8,11 +8,17 @@
 import Foundation
 import Combine
 import SwiftUI
-
+import FirebaseCore
+import FirebaseDatabase
 
 class SignUpViewModel: ObservableObject {
+    
+    var ref: DatabaseReference!
+    
+    
+    
+    
     @Published var navigateToBudgetSelect = false
-
     @Published var userName = ""
     @Published var email = ""
     @Published var password = ""
@@ -27,13 +33,14 @@ class SignUpViewModel: ObservableObject {
     @Published var canSubmit = false
     private var cancellableSet: Set<AnyCancellable> = []
     
-    //NSPredicate is logical condition used to filter data 
+    //NSPredicate is logical condition used to filter data
     let emailPredicate = NSPredicate(format: "SELF MATCHES %@", "^[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\\.)+[a-zA-Z]{2,}$")
     
     let passwordPredicate = NSPredicate(format: "SELF MATCHES %@", "^(?=.*[A-Z])(?=.*\\d)(?=.*[~!@#$%^&*()_+=\\-{}|\\[\\]:;\"<>,.?\\/])[A-Za-z\\d~!@#$%^&*()_+=\\-{}|\\[\\]:;\"<>,.?\\/]{8,}$")
 
     
     init() {
+        ref = Database.database().reference()
         
         $userName
             .map { !$0.isEmpty }
@@ -94,6 +101,8 @@ class SignUpViewModel: ObservableObject {
         guard canSubmit else {
             return
         }
+        //call pushnewvalue
+        pushNewValue(name: userName, email: email, password: password)
         
         print("Creating Account \(email).")
         userName = ""
@@ -106,4 +115,55 @@ class SignUpViewModel: ObservableObject {
         navigateToBudgetSelect.wrappedValue = true
       
     }
+    
+    func pushNewValue(name:String, email:String, password:String){
+        
+        var nOfUser = 0
+        
+        let userRef = ref.child("Users")
+        
+        userRef.observeSingleEvent(of: .value) { (snapshot) in
+                    // Check if the snapshot exists and contains data
+                    guard snapshot.exists(), let usersDict = snapshot.value as? [String: Any] else {
+                        print("No data found under Users node")
+                        self.ref.child("Users").child("User 0").setValue(["User ID": String(nOfUser),"Full Name": name, "Email": email, "Password": password, "Budget":0 ])
+                        
+                        return
+                    }
+                    
+                    // Get the count of child nodes under "Users"
+                    let numberOfUsers = usersDict.count
+                    print("Number of users: \(numberOfUsers)")
+                    nOfUser = numberOfUsers
+            
+                    let userNum = "User "  + String(nOfUser)
+
+            //instead of of using userNum to label the Jason object we can just use nOfUser, which is the same as UID
+            self.ref.child("Users").child(userNum).setValue(["User ID": String(nOfUser),"Full Name": name, "Email": email, "Password": password, "Budget":0 ])
+            
+                }
+        
+    }
+    
+    func getUserUID(completion: @escaping (String) -> Void) {
+        
+        let userRef = ref.child("Users")
+        
+        userRef.observeSingleEvent(of: .value) { (snapshot) in
+            // Check if the snapshot exists and contains data
+            guard snapshot.exists(), let usersDict = snapshot.value as? [String: Any] else {
+                print("No data found under Users node")
+                let uid = "User 0" // Set default value for UID
+                completion(uid) // Call the completion handler with the default value
+                return
+            }
+
+            // Get the count of child nodes under "Users"
+            let numberOfUsers = usersDict.count
+            print("Number of users: \(numberOfUsers)")
+            let uid = "User "  + String(numberOfUsers)
+            completion(uid) // Call the completion handler with the obtained UID
+        }
+    }
+    
 }

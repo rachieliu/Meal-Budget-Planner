@@ -6,7 +6,12 @@
 //
 
 import SwiftUI
+import Firebase
+import FirebaseCore
 
+class userData : ObservableObject{
+    @Published var userID: String = ""
+}
 struct CreateAccountView: View {
     @StateObject private var viewModel = SignUpViewModel()
    
@@ -67,6 +72,8 @@ struct CreateAccountView: View {
                     .onTapGesture {
                         viewModel.createAccount(navigateToBudgetSelect: $navigateToBudgetSelect)
                     }*/
+                    
+                    
                     Button(action: {
                         viewModel.createAccount(navigateToBudgetSelect: $navigateToBudgetSelect)
                       

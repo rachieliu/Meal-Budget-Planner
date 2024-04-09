@@ -6,13 +6,13 @@
 //
 
 import SwiftUI
+import Firebase
+import FirebaseCore
 
-class BudgetSelectViewModel: ObservableObject {
-    @Published var selectedBudget: Int?
-}
+
 
 struct BudgetSelectView: View {
-    @StateObject var viewModel = BudgetSelectViewModel()
+    @StateObject var viewModel2 = BudgetSelectViewModel()
     
     //variables are so user can only select one
     @State private var selected75 = false
@@ -110,9 +110,11 @@ struct BudgetSelectView: View {
                     
                     Button(action: {
                          // Trigger navigation only if a budget option is selected
-                         if selected75 || selected100 || selected125 || selected150 {
-                             isNextViewActive = true
-                         }
+                        if selected75 || selected100 || selected125 || selected150 {
+                            // Call pushNewBudget with selected options
+                            viewModel2.pushNewBudget(budget75: selected75, budget100: selected100, budget125: selected125, budget150: selected150)
+                            isNextViewActive = true
+                        }
                      }) {
                          HStack{
                              Text("LET'S GO")

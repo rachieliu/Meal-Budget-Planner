@@ -14,7 +14,7 @@ struct TabBarView: View {
     
     
     enum Tab {
-      case grocery,explore, home, favorites, budget
+      case grocery,explore, home, favorites, settings
      }
     
     /*enum GroceryNavigation: Hashable {
@@ -74,7 +74,7 @@ struct TabBarView: View {
                 .tag(Tab.favorites)
             
             
-            
+
             
             
              MyAccountView()
@@ -82,7 +82,7 @@ struct TabBarView: View {
 
                      Label("Settings", systemImage: "gearshape")
                  }
-                 .tag(Tab.budget)
+                 .tag(Tab.settings)
             
             
         }

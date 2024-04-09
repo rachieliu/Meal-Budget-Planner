@@ -15,10 +15,10 @@ struct HeaderView: View {
                 Image("Icon")
                     .resizable()
                     .frame(width: 150, height: 120)
-                    .padding(.top, 20)
-                    .padding(.leading, 60) // Adjusted padding for right spacing
-                Spacer()
-                
+                    .padding(.top, 50)
+                    //.padding(.leading, 60) // Adjusted padding for right spacing
+               Spacer()
+                /*
                 NavigationLink(destination: MyAccountView()){
                     Image("Account")
                         .resizable()
@@ -27,7 +27,7 @@ struct HeaderView: View {
                         .frame(width: 40, height: 40)
                         .background(Color("PrimaryColor"))
                         .clipShape(Circle())
-                }
+                }*/
             }
             .padding(.horizontal)
             //.padding(.top, -100)
