@@ -29,8 +29,9 @@ class SignUpViewModel: ObservableObject {
     
     //NSPredicate is logical condition used to filter data 
     let emailPredicate = NSPredicate(format: "SELF MATCHES %@", "^[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\\.)+[a-zA-Z]{2,}$")
+    
+    let passwordPredicate = NSPredicate(format: "SELF MATCHES %@", "^(?=.*[A-Z])(?=.*\\d)(?=.*[~!@#$%^&*()_+=\\-{}|\\[\\]:;\"<>,.?\\/])[A-Za-z\\d~!@#$%^&*()_+=\\-{}|\\[\\]:;\"<>,.?\\/]{8,}$")
 
-    let passwordPredicate = NSPredicate(format: "SELF MATCHES %@", "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,}$")
     
     init() {
         

@@ -101,7 +101,7 @@
 		5A4452DE2BA9220E00F2BCD5 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		5A4452E42BA936DE00F2BCD5 /* CalendarDayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDayView.swift; sourceTree = "<group>"; };
 		5A4452E62BA9729E00F2BCD5 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
-		5A4452EA2BA9843D00F2BCD5 /* FirstBudgetBreakfast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FirstBudgetBreakfast.swift; path = "Meal Budget Planner/Components/FirstBudgetBreakfast.swift"; sourceTree = SOURCE_ROOT; };
+		5A4452EA2BA9843D00F2BCD5 /* FirstBudgetBreakfast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FirstBudgetBreakfast.swift; path = "Meal Budget Planner/Main Views/Home/Main Meal Screens/FirstBudgetBreakfast.swift"; sourceTree = SOURCE_ROOT; };
 		5A4452EC2BAA7F4800F2BCD5 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		5A4452EE2BAAB41D00F2BCD5 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		5A4452F22BAAB70900F2BCD5 /* MealButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealButtonView.swift; sourceTree = "<group>"; };
@@ -110,7 +110,7 @@
 		5A4453052BABA6BA00F2BCD5 /* BreakfastItemsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreakfastItemsView.swift; sourceTree = "<group>"; };
 		5A4453072BABA73300F2BCD5 /* LunchItemsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LunchItemsView.swift; sourceTree = "<group>"; };
 		5A4453092BABA78200F2BCD5 /* DinnerItemsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DinnerItemsView.swift; sourceTree = "<group>"; };
-		5A6D71662BA3EA7D00442BF1 /* SignupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewModel.swift; sourceTree = "<group>"; };
+		5A6D71662BA3EA7D00442BF1 /* SignupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SignupViewModel.swift; path = "Meal Selection/SignupViewModel.swift"; sourceTree = "<group>"; };
 		5A6D71682BA3EC3A00442BF1 /* CreateAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountView.swift; sourceTree = "<group>"; };
 		5A6D716A2BA3EE3D00442BF1 /* EntryFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryFieldView.swift; sourceTree = "<group>"; };
 		5A884CC12BB76F3100D861A5 /* FavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesView.swift; sourceTree = "<group>"; };
@@ -191,11 +191,12 @@
 		5A0306D52B7ADA71000D979A /* Main Views */ = {
 			isa = PBXGroup;
 			children = (
-				5A884CF92BC1656700D861A5 /* Welcome View */,
-				5A0306ED2B7AF397000D979A /* Main View */,
-				5A0306FF2B7C414F000D979A /* Meal Screens */,
-				5A0306D92B7ADAFA000D979A /* Profile */,
-				5A0306D72B7ADADB000D979A /* Root */,
+				5A4452E62BA9729E00F2BCD5 /* TabBarView.swift */,
+				5A0F28A02BC4FCA400DD3EEC /* Grocery */,
+				5A4452F62BAB824F00F2BCD5 /* Explore */,
+				5A0F28A12BC4FCAB00DD3EEC /* Home */,
+				5A0F28A22BC4FCB300DD3EEC /* Favorite */,
+				5A0F28A32BC4FCB800DD3EEC /* Settings */,
 			);
 			path = "Main Views";
 			sourceTree = "<group>";
@@ -203,7 +204,6 @@
 		5A0306D62B7ADA79000D979A /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				5A6D71662BA3EA7D00442BF1 /* SignupViewModel.swift */,
 				5A884CCF2BC150DE00D861A5 /* RecipeModel.swift */,
 				5A884CF22BC15DD600D861A5 /* IngredientModel.swift */,
 			);
@@ -218,20 +218,13 @@
 			path = Root;
 			sourceTree = "<group>";
 		};
-		5A0306D92B7ADAFA000D979A /* Profile */ = {
-			isa = PBXGroup;
-			children = (
-				5A0306FD2B7C367E000D979A /* MyAccountView.swift */,
-			);
-			path = Profile;
-			sourceTree = "<group>";
-		};
 		5A0306E32B7AF2B9000D979A /* Account Creation */ = {
 			isa = PBXGroup;
 			children = (
-				5A6D716A2BA3EE3D00442BF1 /* EntryFieldView.swift */,
 				5A6D71682BA3EC3A00442BF1 /* CreateAccountView.swift */,
-				5A0306E42B7AF302000D979A /* BudgetSelectView.swift */,
+				5A6D71662BA3EA7D00442BF1 /* SignupViewModel.swift */,
+				5A6D716A2BA3EE3D00442BF1 /* EntryFieldView.swift */,
+				5A0F289F2BC4FC4800DD3EEC /* Budget */,
 				5A0306EC2B7AF34C000D979A /* Meal Selection */,
 			);
 			path = "Account Creation";
@@ -247,34 +240,72 @@
 			path = "Meal Selection";
 			sourceTree = "<group>";
 		};
-		5A0306ED2B7AF397000D979A /* Main View */ = {
-			isa = PBXGroup;
-			children = (
-				5A4452E62BA9729E00F2BCD5 /* TabBarView.swift */,
-				5A884CC12BB76F3100D861A5 /* FavoritesView.swift */,
-				5A4452EC2BAA7F4800F2BCD5 /* HomeView.swift */,
-				5A0307042B7C8789000D979A /* GroceryListView.swift */,
-				5A0307062B7C87E0000D979A /* MyBudgetView.swift */,
-				5A4452F62BAB824F00F2BCD5 /* Explore */,
-			);
-			path = "Main View";
-			sourceTree = "<group>";
-		};
 		5A0306F22B7B06F2000D979A /* Buttons */ = {
 			isa = PBXGroup;
 			children = (
-				5A0306F32B7B071C000D979A /* SelectBudgetButton.swift */,
-				5A4452F22BAAB70900F2BCD5 /* MealButtonView.swift */,
 			);
 			path = Buttons;
 			sourceTree = "<group>";
 		};
-		5A0306FF2B7C414F000D979A /* Meal Screens */ = {
+		5A0F289E2BC4FC0600DD3EEC /* Starting Views */ = {
 			isa = PBXGroup;
 			children = (
+				5A0306DF2B7AE052000D979A /* WelcomeView.swift */,
+				5A884CF82BC164F600D861A5 /* Log In */,
+				5A0306E32B7AF2B9000D979A /* Account Creation */,
+			);
+			path = "Starting Views";
+			sourceTree = "<group>";
+		};
+		5A0F289F2BC4FC4800DD3EEC /* Budget */ = {
+			isa = PBXGroup;
+			children = (
+				5A0306F32B7B071C000D979A /* SelectBudgetButton.swift */,
+				5A0306E42B7AF302000D979A /* BudgetSelectView.swift */,
+			);
+			path = Budget;
+			sourceTree = "<group>";
+		};
+		5A0F28A02BC4FCA400DD3EEC /* Grocery */ = {
+			isa = PBXGroup;
+			children = (
+				5A0307042B7C8789000D979A /* GroceryListView.swift */,
+			);
+			path = Grocery;
+			sourceTree = "<group>";
+		};
+		5A0F28A12BC4FCAB00DD3EEC /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				5A4452EC2BAA7F4800F2BCD5 /* HomeView.swift */,
+				5A0F28A42BC4FCD500DD3EEC /* Main Meal Screens */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		5A0F28A22BC4FCB300DD3EEC /* Favorite */ = {
+			isa = PBXGroup;
+			children = (
+				5A884CC12BB76F3100D861A5 /* FavoritesView.swift */,
+			);
+			path = Favorite;
+			sourceTree = "<group>";
+		};
+		5A0F28A32BC4FCB800DD3EEC /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				5A0306FD2B7C367E000D979A /* MyAccountView.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		5A0F28A42BC4FCD500DD3EEC /* Main Meal Screens */ = {
+			isa = PBXGroup;
+			children = (
+				5A4452F22BAAB70900F2BCD5 /* MealButtonView.swift */,
 				5A4452EA2BA9843D00F2BCD5 /* FirstBudgetBreakfast.swift */,
 			);
-			path = "Meal Screens";
+			path = "Main Meal Screens";
 			sourceTree = "<group>";
 		};
 		5A4452F02BAAB6AE00F2BCD5 /* Calendar */ = {
@@ -317,6 +348,7 @@
 			children = (
 				5A0306E12B7AE066000D979A /* SignupView.swift */,
 				5A0306F02B7AF3D6000D979A /* MyMealsView.swift */,
+				5A0307062B7C87E0000D979A /* MyBudgetView.swift */,
 				5A0307022B7C55D2000D979A /* CustomTabView.swift */,
 			);
 			path = Archive;
@@ -371,16 +403,6 @@
 			path = "Log In";
 			sourceTree = "<group>";
 		};
-		5A884CF92BC1656700D861A5 /* Welcome View */ = {
-			isa = PBXGroup;
-			children = (
-				5A0306DF2B7AE052000D979A /* WelcomeView.swift */,
-				5A0306E32B7AF2B9000D979A /* Account Creation */,
-				5A884CF82BC164F600D861A5 /* Log In */,
-			);
-			path = "Welcome View";
-			sourceTree = "<group>";
-		};
 		5A93792E2B76E09E004A84EB = {
 			isa = PBXGroup;
 			children = (
@@ -408,7 +430,9 @@
 				5A884CDB2BC1540300D861A5 /* Utils */,
 				5A0306F22B7B06F2000D979A /* Buttons */,
 				5A0306D42B7ADA68000D979A /* Components */,
+				5A0F289E2BC4FC0600DD3EEC /* Starting Views */,
 				5A0306D52B7ADA71000D979A /* Main Views */,
+				5A0306D72B7ADADB000D979A /* Root */,
 				5A0306D62B7ADA79000D979A /* Model */,
 				5A884CCC2BC14FF900D861A5 /* ViewModel */,
 				5A93793E2B76E0A1004A84EB /* Assets.xcassets */,
