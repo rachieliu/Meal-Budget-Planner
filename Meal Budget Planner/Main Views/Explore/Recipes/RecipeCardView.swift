@@ -59,3 +59,4 @@ struct RecipeCardView_Previews: PreviewProvider {
         }
     }
 }
+

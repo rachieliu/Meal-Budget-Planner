@@ -92,3 +92,4 @@ struct RecipeRowView_Previews: PreviewProvider {
         RecipeRowView(categoryName:"Trending", recipes: sampleRecipes)
     }
 }
+

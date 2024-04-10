@@ -118,3 +118,4 @@ struct RecipeDetailView_Previews: PreviewProvider {
             .environmentObject(ShoppingListViewModel())
     }
 }
+

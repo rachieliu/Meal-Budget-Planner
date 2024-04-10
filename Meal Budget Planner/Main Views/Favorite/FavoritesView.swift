@@ -2,7 +2,7 @@
 //  FavoritesView.swift
 //  Meal Budget Planner
 //
-//  Created by Rachel Liu on 3/29/24.
+//  Created by Rachel Liu on 4/9/24.
 //
 
 import SwiftUI
@@ -13,8 +13,6 @@ struct FavoritesView: View {
     }
 }
 
-struct FavoritesView_Previews: PreviewProvider {
-    static var previews: some View {
-        FavoritesView()
-    }
+#Preview {
+    FavoritesView()
 }
