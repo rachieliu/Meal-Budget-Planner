@@ -4,7 +4,7 @@
 //
 //  Created by Rachel Liu on 4/6/24.
 //
-
+/*
 import SwiftUI
 
 final class FavoriteViewModel: ObservableObject {
@@ -36,3 +36,4 @@ extension FavoriteViewModel {
         defaults.set(data, forKey: keyFavorites)
     }
 }
+*/

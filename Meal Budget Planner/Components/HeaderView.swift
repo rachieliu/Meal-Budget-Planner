@@ -29,7 +29,7 @@ struct HeaderView: View {
                         .clipShape(Circle())
                 }*/
             }
-            .padding(.horizontal)
+           // .padding(.horizontal)
             //.padding(.top, -100)
         }
         //.edgesIgnoringSafeArea(.top)

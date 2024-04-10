@@ -4,49 +4,196 @@
 //
 //  Created by Rachel Liu on 3/19/24.
 //
-
+import Firebase
 import SwiftUI
+
+class MyMealsViewModel: ObservableObject {
+    
+    var ref: DatabaseReference!
+    
+    init(){
+        ref = Database.database().reference()
+    }
+    
+    @Published var breakfastMeal : String = ""
+    @Published var lunchMeal : String = ""
+    @Published var dinnerMeal : String = ""
+    
+    func fetchUserBreakfastSelection() {
+        
+        var nOfUser = 0
+        let userRef = ref.child("Users")
+        
+        userRef.observeSingleEvent(of: .value) { (snapshot) in
+            // Check if the snapshot exists and contains data
+            guard snapshot.exists(), let usersDict = snapshot.value as? [String: Any] else {
+                print("No data found under Users node")
+                return
+            }
+            
+            // Get the count of child nodes under "Users"
+            let numberOfUsers = usersDict.count
+            print("Number of users: \(numberOfUsers)")
+            nOfUser = numberOfUsers - 1
+            
+            let userNum = "User \(nOfUser)"
+            print(userNum)
+            
+            let ref = Database.database().reference().child("Users").child(userNum)
+            
+            ref.observeSingleEvent(of: .value) { snapshot in
+                guard let userData = snapshot.value as? [String: Any] else {
+                    print("Failed to fetch \(userNum) data")
+                    return
+                }
+                
+                if let breakfastSelection = userData["Breakfast Selection"] as? String {
+                    self.breakfastMeal = breakfastSelection
+                    print(self.breakfastMeal)
+                    
+                    // Move substring extraction inside this closure
+                    if let index = breakfastSelection.firstIndex(of: ",") {
+                        let substringBeforeComma = breakfastSelection[..<index]
+                        print(substringBeforeComma)
+                        self.breakfastMeal = String(substringBeforeComma)
+                        print("breakfast meal: \(self.breakfastMeal)")
+                    } else {
+                        print("No comma")
+                    }
+                } else {
+                    print("\(userNum) has no breakfast selection.")
+                }
+            }
+        }
+        
+    }
+    
+    func fetchUserLunchSelection() {
+        
+        var nOfUser = 0
+        let userRef = ref.child("Users")
+        
+        userRef.observeSingleEvent(of: .value) { (snapshot) in
+            // Check if the snapshot exists and contains data
+            guard snapshot.exists(), let usersDict = snapshot.value as? [String: Any] else {
+                print("No data found under Users node")
+                return
+            }
+            
+            // Get the count of child nodes under "Users"
+            let numberOfUsers = usersDict.count
+            print("Number of users: \(numberOfUsers)")
+            nOfUser = numberOfUsers - 1
+            
+            let userNum = "User \(nOfUser)"
+            print(userNum)
+            
+            let ref = Database.database().reference().child("Users").child(userNum)
+            
+            ref.observeSingleEvent(of: .value) { snapshot in
+                guard let userData = snapshot.value as? [String: Any] else {
+                    print("Failed to fetch \(userNum) data")
+                    return
+                }
+                
+                if let lunchSelection = userData["Lunch Selection"] as? String {
+                    self.lunchMeal = lunchSelection
+                    print(self.lunchMeal)
+                    
+                    // Move substring extraction inside this closure
+                    if let index = lunchSelection.firstIndex(of: ",") {
+                        let substringBeforeComma = lunchSelection[..<index]
+                        print(substringBeforeComma)
+                        self.lunchMeal = String(substringBeforeComma)
+                        print("lunch meal: \(self.lunchMeal)")
+                    } else {
+                        print("No comma")
+                    }
+                } else {
+                    print("\(userNum) has no breakfast selection.")
+                }
+            }
+        }
+        
+    }
+    
+    func fetchUserDinnerSelection() {
+        
+        var nOfUser = 0
+        let userRef = ref.child("Users")
+        
+        userRef.observeSingleEvent(of: .value) { (snapshot) in
+            // Check if the snapshot exists and contains data
+            guard snapshot.exists(), let usersDict = snapshot.value as? [String: Any] else {
+                print("No data found under Users node")
+                return
+            }
+            
+            // Get the count of child nodes under "Users"
+            let numberOfUsers = usersDict.count
+            print("Number of users: \(numberOfUsers)")
+            nOfUser = numberOfUsers - 1
+            
+            let userNum = "User \(nOfUser)"
+            print(userNum)
+            
+            let ref = Database.database().reference().child("Users").child(userNum)
+            
+            ref.observeSingleEvent(of: .value) { snapshot in
+                guard let userData = snapshot.value as? [String: Any] else {
+                    print("Failed to fetch \(userNum) data")
+                    return
+                }
+                
+                if let dinnerSelection = userData["Dinner Selection"] as? String {
+                    self.dinnerMeal = dinnerSelection
+                    print(self.dinnerMeal)
+                    
+                    // Move substring extraction inside this closure
+                    if let index = dinnerSelection.firstIndex(of: ",") {
+                        let substringBeforeComma = dinnerSelection[..<index]
+                        print(substringBeforeComma)
+                        self.dinnerMeal = String(substringBeforeComma)
+                        print("dinner meal: \(self.dinnerMeal)")
+                    } else {
+                        print("No comma")
+                    }
+                } else {
+                    print("\(userNum) has no breakfast selection.")
+                }
+            }
+        }
+        
+    }
+    
+}
 
 struct HomeView: View {
     
     enum Tab {
-      case grocery, home, explore, budget
+      case grocery, home, explore, favorites, settings
      }
     
     @State private var selectedTab: Tab = .home
-    
     @State private var selectedDate = Date()
-   // @Binding var path: [TabBarView.HomeNavigation]
 
     let currentDate = Date()
     let calendar = Calendar.current
    
-    
-   //@State private var tabSelection = 2
-
-
-    
     var body: some View {
         
         
         NavigationView(){
             
-            VStack(spacing:0){
-                HeaderView()
-                    
-                //Spacer()
+            VStack{
                 
-                Text("My Meal Plan")
-                    .fontWeight(.bold)
-                    //.padding(.top, 10)
-                    .padding(.bottom)
                 Spacer()
-                
                 CalendarView()
-                Spacer()
-                .padding(.top, 50)
-                    
-
+                    .padding(.top)
+                // Spacer()
+                // .padding(.bottom, 50)
+                
+                
                 VStack(spacing: 0) {
                     MealButtonView(category: "B R E A K F A S T")
                     MealButtons(title: "Meal Name")
@@ -55,102 +202,29 @@ struct HomeView: View {
                     MealButtonView(category: "D I N N E R ")
                     MealButtons(title: "Meal Name")
                 }
-                .padding()
-                Spacer()
-               // CustomTabView(tabSelection: $tabSelection)
+                .padding(.bottom, 100)
                 
-                //TabBarView()
-                //    .padding(.vertical)
-                 // Pushes content to the top
-                
-                
-               /* VStack{
-                    TabView(selection: $selectedTab){
-                        
-                        GroceryListView()
-                             .tabItem {
-
-                                 Label("Grocery", systemImage: "cart")
-                             }
-                             .tag(Tab.grocery)
-                        
-                        HomeView()
-                             .tabItem {
-
-                                 Label("My Meals", systemImage: "house")
-                             }
-                             .tag(Tab.home)
-                        
-                        ExploreView()
-                            .tabItem {
-
-                                Label("Explore", systemImage: "network")
-                            }
-                            .tag(Tab.explore)
-                        
-                         MyBudgetView()
-                             .tabItem {
-
-                                 Label("Budget", systemImage: "gearshape")
-                             }
-                             .tag(Tab.budget)
-                        
-                        
-                    }
-                }*/
                 //Spacer()
-                    
+                
                 
             }
-            .edgesIgnoringSafeArea(.top)
+            .navigationBarTitle(Text("Home"))
+            //.navigationBarHidden(true)
             
-            
-        }
-        .navigationBarHidden(true)
+            Spacer()
+            .navigationBarBackButtonHidden(true)
+            }
         
-    }
-    /*private func startOfWeek() -> Date {
-        let today = calendar.startOfDay(for: currentDate)
-        let dayOfWeek = calendar.component(.weekday, from: today)
-        let offset = (dayOfWeek - 2) % 7 // Sunday is the last day of the week, so we use modulo 7
-        return calendar.date(byAdding: .day, value: -offset, to: today)!
-    }*/
-}
-            
-
-
-
-/*struct MealButtons: View {
-    let title: String
-    
-    var body: some View {
-        NavigationLink(destination: FirstBudgetBreakfast()) {
-            HStack {
-                Text(title)
-                    //.fontWeight(.bold)
-                    .font(.system(size: 20))
-                    .foregroundColor(.white)
-                    .padding(.vertical, 20)
-                    .padding(.horizontal, 20)
-                    //.background(Color("PrimaryColor"))
-                   // .cornerRadius(20)
-                
-                Spacer()
-                
-                Text("...")
-                    //.fontWeight(.bold)
-                    .font(.system(size: 30))
-                    .foregroundColor(Color.white)
-                    .padding(.trailing, 15)
-                    .padding(.bottom)
-            }
-        }
-        .background(Color("PrimaryColor"))
-        .cornerRadius(20)
+        
+        .edgesIgnoringSafeArea(.top)
         
     }
 }
-*/
+            
+
+
+
+
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
@@ -163,17 +237,4 @@ struct HomeView_Previews: PreviewProvider {
             
     }
 }
-/*
-struct MealTypeView: View {
-    let category: String
-    
-    var body: some View {
-        Text(category)
-            //.fontWeight(.bold)
-            .font(.system(size: 20))
 
-            .padding(.leading,-140)
-            .padding(.top)
-    }
-}
-*/

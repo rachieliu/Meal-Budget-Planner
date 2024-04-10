@@ -4,7 +4,7 @@
 //
 //  Created by Rachel Liu on 4/6/24.
 //
-
+/*
 import SwiftUI
 
 struct RecipeDetailView: View {
@@ -119,3 +119,4 @@ struct RecipeDetailView_Previews: PreviewProvider {
     }
 }
 
+*/

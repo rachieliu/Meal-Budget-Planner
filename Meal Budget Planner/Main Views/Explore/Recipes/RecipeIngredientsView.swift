@@ -5,6 +5,7 @@
 //  Created by Rachel Liu on 4/6/24.
 //
 
+/*
 import SwiftUI
 
 struct RecipeIngredientsView: View {
@@ -77,3 +78,5 @@ struct RecipeIngredientsView_Previews: PreviewProvider {
         RecipeIngredientsView(recipe: sampleRecipes[0])
     }
 }
+
+*/

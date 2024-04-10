@@ -4,6 +4,7 @@
 //
 //  Created by Rachel Liu on 4/6/24.
 //
+/*
 
 import SwiftUI
 
@@ -50,3 +51,5 @@ struct InstructionsView_Previews: PreviewProvider {
         InstructionsView(instructions: sampleRecipes[0].instructions, recipe: sampleRecipes[1])
     }
 }
+
+*/

@@ -45,7 +45,9 @@ struct MealButtons: View {
                     .foregroundColor(Color.white)
                     .padding(.trailing, 15)
                     .padding(.bottom)
+                    .frame(width: 100, height: 100)
             }
+           
         }
         .background(Color("PrimaryColor"))
         .cornerRadius(20)

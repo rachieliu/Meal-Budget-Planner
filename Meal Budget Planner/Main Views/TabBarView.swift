@@ -17,29 +17,10 @@ struct TabBarView: View {
       case grocery,explore, home, favorites, settings
      }
     
-    /*enum GroceryNavigation: Hashable {
-            case child, secondChild
-        }
-    enum HomeNavigation: Hashable {
-            case child, secondChild
-        }
-    enum ExploreNavigation: Hashable {
-            case child, secondChild
-        }
-    enum BudgetNavigation: Hashable {
-            case child, secondChild
-        }*/
-    
-    
-    
     
     @State private var selectedTab: Tab = .home
     
-    // State property to track navigation stack for the home tab
-   // @State private var groceryNavigationStack: [GroceryNavigation] = []
-   // @State private var homeNavigationStack: [HomeNavigation] = []
-   // @State private var exploreNavigationStack: [ExploreNavigation] = []
-    //@State private var budgetNavigationStack: [BudgetNavigation] = []
+
     
     
     var body: some View {
@@ -73,8 +54,6 @@ struct TabBarView: View {
                 }
                 .tag(Tab.favorites)
             
-            
-
             
             
              MyAccountView()

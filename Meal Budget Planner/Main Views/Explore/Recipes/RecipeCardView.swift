@@ -4,7 +4,7 @@
 //
 //  Created by Rachel Liu on 4/6/24.
 //
-
+/*
 import SwiftUI
 
 struct RecipeCardView: View {
@@ -59,4 +59,4 @@ struct RecipeCardView_Previews: PreviewProvider {
         }
     }
 }
-
+*/

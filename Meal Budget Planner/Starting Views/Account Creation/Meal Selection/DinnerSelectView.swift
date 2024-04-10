@@ -56,7 +56,7 @@ class DinnerSelectionViewModel: ObservableObject {
                     
                 }
             } else {
-                print("No lunch meals found")
+                print("No dinner meals found")
             }
         }
     }
@@ -64,7 +64,7 @@ class DinnerSelectionViewModel: ObservableObject {
     func storeSelectedMeals(selectedMeals : Set<String>){
         
         var nOfUser = 0
-        var lunch = selectedMeals.joined(separator: ", ")
+        let lunch = selectedMeals.joined(separator: ", ")
         
         
         let userRef = ref.child("Users")
@@ -94,25 +94,27 @@ class DinnerSelectionViewModel: ObservableObject {
 
 struct DinnerSelectView: View {
     @ObservedObject var viewModel = DinnerSelectionViewModel()
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
-    let mealOptions = [
-            "Protein Smoothie": "proteinsmoothie",
-            "Bagel": "bfastbagel",
-            "Burrito": "bfastburrito",
-            "Oatmeaal": "oatneal",
-            "Avocado Toast": "avocadotoast"
-        ]
     
     var body: some View {
         NavigationView{
             ZStack{
                 Color.white.edgesIgnoringSafeArea(.all)
                 VStack{
-                    Image("Icon")
-                        .resizable()
-                        .scaledToFill()
-                        .frame(width:150, height: 100)
-                        .padding(EdgeInsets(top: -100, leading: 0, bottom: 0, trailing: 0))
+                    Button {
+                        self.presentationMode.wrappedValue.dismiss()
+                        
+                    } label: {
+                        Image(systemName: "arrowshape.backward.fill")
+                    }
+                    .font(.system(size:20))
+                    .foregroundColor(.orange)
+                    
+                    
+                    .padding(.leading,10)
+                    
+                    .padding(.trailing,300)
             
                     
             
@@ -133,19 +135,59 @@ struct DinnerSelectView: View {
                     
                     ScrollView(.horizontal){
                         HStack{
-                            ForEach(mealOptions.keys.sorted(),id: \.self){ meal in
+                            ForEach(viewModel.mealOptions.keys.sorted(),id: \.self){ meal in
+                                ExpandableView(thumbnail: ThumbnailView {
+                                    
+                                    VStack() {
+                                        Image(viewModel.mealOptions[meal]!)
+                                            .resizable()
+                                            .aspectRatio(contentMode: .fit)
+                                            .frame(width: 150, height: 300)
+                                        Text(meal)
+                                            .frame(alignment: .leading)
+                                              .foregroundColor(Color("Color1"))
+                                              .font(.custom("ArialRoundedMTBold", size: 20))
+                                    }
+                                    .padding()
+                                },expanded: ExpandedView{
+                                    VStack(spacing:10) {
+                                        Image(viewModel.mealOptions[meal]!)
+                                            .resizable()
+                                            .aspectRatio(contentMode: .fit)
+                                            .frame(width: 50, height: 50)
+                                            
+                                        Text(meal)
+                                              .frame(maxWidth: .infinity, alignment: .leading)
+                                              .foregroundColor(Color("PrimaryColor"))
+                                              .font(.custom("ArialRoundedMTBold", size: 28))
+                                          
+                                          /*Text(mealData)
+                                              .font(.custom("ArialRoundedMTBold", size: 14))
+                                              .foregroundColor(Color("PrimaryColor"))*/
+                                          
+                                          Text("ooooo food yum yum")
+                                              .font(.custom("ArialRoundedMT", size: 14))
+                                              .foregroundColor(Color("PrimaryColor"))
+                                        
+                                        Spacer()
+                                    }
+                                    .padding()
+                                }, thumbnailViewBackgroundColor: Color("Gray").opacity(0.7), expandedViewBackgroundColor: Color("Gray"))
                                 Button(action: {
-                                    viewModel.toggleMealSelection(meal)
-                                }) {
-                                    Image(mealOptions[meal]!)
+                                    viewModel.toggleMealSelection(meal)// Toggle the selection state when tapped
+                                    
+                                }){
+                                    Image(systemName:"plus.circle.fill")
                                         .resizable()
                                         .aspectRatio(contentMode: .fit)
-                                        .frame(width: 150, height: 300)
-                                        .overlay(
-                                            RoundedRectangle(cornerRadius: 10)
-                                                .stroke(viewModel.selectedMeals.contains(meal) ? Color.blue : Color.clear, lineWidth: 2)
-                                        )
+                                        .frame(width: 40, height: 40)
+                                        .foregroundStyle(viewModel.selectedMeals.contains(meal) ? Color.teal : Color.gray)
+                                        
+                                        
+                                    
+           
                                 }
+                                .padding(.trailing, -30)
                                 
                         }
                         
@@ -174,7 +216,7 @@ struct DinnerSelectView: View {
                     
                     NavigationLink(
                         destination:
-                            MyMealsView().onAppear(){
+                            TabBarView().onAppear(){
                                 viewModel.storeSelectedMeals(selectedMeals: viewModel.selectedMeals)
                             }
                             .navigationBarHidden(true),

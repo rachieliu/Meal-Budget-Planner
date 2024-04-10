@@ -74,7 +74,7 @@ struct ExpandableView: View {
                 }
             } label: {
                 Image(systemName: "xmark")
-                    .foregroundColor(.white)
+                    .foregroundColor(.gray)
             }
             .padding()
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)

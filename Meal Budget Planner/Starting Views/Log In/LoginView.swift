@@ -84,7 +84,7 @@ struct LoginView: View {
                     .padding(.top, 24)
                     
                     NavigationLink(
-                        destination: MyMealsView().navigationBarHidden(true),
+                        destination: WelcomeView().navigationBarHidden(true),
                         label: {
                             HStack(spacing: 3){
                                 Text("Forgot password?")

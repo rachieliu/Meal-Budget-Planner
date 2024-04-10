@@ -4,6 +4,7 @@
 //
 //  Created by Rachel Liu on 2/13/24.
 //
+
 import SwiftUI
 
 struct Box: Identifiable {
@@ -76,13 +77,20 @@ struct ExploreView: View {
                         .padding(.top,-100)
                             
                         
-                        Spacer()
+                        //Spacer()
                     }
                     .navigationBarTitle(Text("Explore"))
+                    //.ignoresSafeArea()
                 }
                 .tag(index)
             }
         }
+        
+        .onAppear {
+            // Set selectedBoxId to the id of Breakfast box when ExploreView appears
+            self.selectedBoxId = 0
+        }
+        .edgesIgnoringSafeArea(.bottom)
        // .tabViewStyle(PageTabViewStyle())
     }
 }
@@ -127,3 +135,5 @@ struct ExploreView_Previews: PreviewProvider {
         ExploreView()
     }
 }
+
+
