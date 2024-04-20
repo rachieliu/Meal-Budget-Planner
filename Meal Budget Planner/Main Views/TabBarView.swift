@@ -16,6 +16,7 @@ struct TabBarView: View {
     enum Tab {
       case grocery,explore, home, favorites, settings
      }
+    @StateObject var viewModel = FavoritesViewModel()
     
     
     @State private var selectedTab: Tab = .home
@@ -49,6 +50,7 @@ struct TabBarView: View {
                  .tag(Tab.home)
             
             FavoritesView()
+                .environmentObject(viewModel)
                 .tabItem{
                     Label("Favorites", systemImage: "heart")
                 }
@@ -67,11 +69,16 @@ struct TabBarView: View {
         }
         .navigationBarBackButtonHidden(true)
         .edgesIgnoringSafeArea(.top)
+        .onAppear {
+            self.selectedTab = .home // Set default selected tab
+        }
+        
        
 
         
         
     }
+        
 }
 
 extension TabBarView {
