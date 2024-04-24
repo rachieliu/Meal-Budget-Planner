@@ -17,7 +17,7 @@ struct GroceryListView: View {
     //@State private var tabSelection = 0
     var body: some View {
         ZStack{
-            Image("background1")
+            Image("HomeScreen")
                 .resizable()
                 .scaledToFill()
                 .edgesIgnoringSafeArea(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)
@@ -29,7 +29,7 @@ struct GroceryListView: View {
                 
                 
                 
-                Image("background1")
+                Image("HomeScreen")
                     .resizable()
                     .scaledToFill()
                     .edgesIgnoringSafeArea(.all) // Ignore safe area edges if needed
