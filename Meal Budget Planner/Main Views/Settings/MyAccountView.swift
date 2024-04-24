@@ -7,117 +7,136 @@
 
 import SwiftUI
 
+
 struct MyAccountView: View {
-    @State var isDarkModeEnabled: Bool = true
-    @State var downloadViaWifiEnabled: Bool = false
+    
+    
+    @State var isDarkModeEnabled: Bool = false
+    @ObservedObject var viewModel = MyAccountViewModel()
+    @State private var navigateToLogin = false
+   
+    var body: some View {
         
-        var body: some View {
-            NavigationView {
-                Form {
-                    Group {
-                        HStack{
-                            Spacer()
-                            VStack {
-                                Image("Account")
-                                    .resizable()
-                                    .frame(width:100, height: 100, alignment: .center)
-                                    .background(Color("PrimaryColor"))
-                                    .clipShape(Circle())
-                                Text("User Name")
-                                    .font(.title)
-                                Text("username@yahoo.com")
-                                    .font(.subheadline)
-                                    .foregroundColor(.gray)
-                                Spacer()
-                                Button(action: {
-                                    print("Edit Profile tapped")
-                                }) {
-                                    Text("Edit Profile")
-                                        .frame(minWidth: 0, maxWidth: .infinity)
-                                        .font(.system(size: 18))
-                                        .padding()
-                                        .foregroundColor(.white)
-                                        .overlay(
-                                            RoundedRectangle(cornerRadius: 25)
-                                                .stroke(Color.white, lineWidth: 2)
-                                        )
-                                }
-                                .background(Color("PrimaryColor"))
-                                .cornerRadius(25)
-                            }
-                            Spacer()
-                        }
-                    }
-                    
-                    Section(header: Text("CONTENT"), content: {
-                        HStack{
-                            Image(systemName: "heart.fill")
-                            Text("Favorites")
-                        }
-
-                        HStack{
-                            Image(systemName: "heart.fill")
-                            Text("History")
-                        }
-
-                    })
-
-                    Section(header: Text("PREFRENCES"), content: {
-                        /*HStack{
-                            Image(systemName: "heart.fill")
-                            Text("Language")
-                        }*/
-                        HStack{
-                            Image(systemName: "heart.fill")
-                            Toggle(isOn: $isDarkModeEnabled) {
-                                Text("Dark Mode")
-                            }
-                        }
-                        
-                       
-
-                    })
-                    
-                    VStack {
-                        
-                        NavigationLink(
+        NavigationView {
+            VStack {
+                Group {
+                    HStack {
+                        Spacer()
+                        VStack {
                             
-                            destination:LoginView().navigationBarHidden(true),
-                            label:{
-                                
-                                Text("Log Out")
-                                    .frame(minWidth: 0, maxWidth: .infinity)
+                            Image("Account")
+                                .resizable()
+                                .frame(width: 100, height: 100, alignment: .center)
+                                .background(isDarkModeEnabled ? Color("Black") : Color("BabyPink"))
+                                .clipShape(Circle())
+                           Text("Rachel")
+                                .font(.title)
+                            Text("rachelliu34@yahoo.com")
+                                .font(.subheadline)
+                                .foregroundColor(.gray)
+                           Text(viewModel.name)
+                                .font(.title)
+                            Text(viewModel.email)
+                                .font(.subheadline)
+                                .foregroundColor(.gray)
+                        
+                            Button(action: {
+                                print("Edit Profile tapped")
+                            }) {
+                                Text("Edit Profile")
+                                    .frame(minWidth: 0, maxWidth: 250, maxHeight:50)
                                     .font(.system(size: 18))
-                                    .padding()
+                                   // .padding()
                                     .foregroundColor(.white)
-                                    
-                                    
+                                    .overlay(
+                                        RoundedRectangle(cornerRadius: 25)
+                                            .stroke(Color.white, lineWidth: 2)
+                                    )
                             }
-                        
-                        )
-                        .background(Color("PrimaryColor"))
-                        .cornerRadius(25)
-                        
-                        
-                        
-                        
+                           .background(isDarkModeEnabled ? Color("BabyBlue") : Color("GreyTone"))
+                            .cornerRadius(25)
+                        }
                         Spacer()
                     }
-                    .padding()
-                    .navigationTitle("Profile") 
                 }
+
+                
+                Form {
+                                        
+                    Section(header: Text("CONTENT"), content: {
+                        HStack {
+                            Image(systemName: "heart.fill")
+                                .foregroundColor(isDarkModeEnabled ? Color.black : Color("BabyPink"))
+                            Text("Favorites")
+                        }
+                        .listRowBackground(isDarkModeEnabled ? Color("BabyBlue") : Color.white)
+
+                        HStack {
+                            Image(systemName: "heart.fill")
+                                .foregroundColor(isDarkModeEnabled ? Color.black : Color("BabyPink"))
+                            Text("History")
+                        }
+                        .listRowBackground(isDarkModeEnabled ? Color("BabyBlue") : Color.white)
+                    })
+
+                    Section(header: Text("PREFERENCES"), content: {
+                        HStack {
+                            Image(systemName: "heart.fill")
+                                .foregroundColor(Color("BabyPink"))
+                            Toggle(isOn: $isDarkModeEnabled) {
+                                Text("Blue Mode")
+                            }
+                            .listRowBackground(isDarkModeEnabled ? Color("BabyBlue") : Color.white)
+                        }
+                    })
+   
                 }
                 
-                //.navigationBarTitle("Settings")
-            // .navigationBarBackButtonHidden(true)
-
-            }
+                
+                
+                Button(action: {
+                      viewModel.logout()
+                    navigateToLogin = true
+                  }) {
+                      Text("Log Out")
+                          .frame(maxWidth: 200, maxHeight:20)
+                          .font(.system(size: 18))
+                          .padding()
+                          .foregroundColor(isDarkModeEnabled ? Color("LightGrey") : Color("DarkGrey"))
+                          
+                  }
+                 
+                  
+                  .background(isDarkModeEnabled ? Color("DarkGrey") : Color("LightGrey"))
+                 .cornerRadius(25)
+                 .padding(.bottom)
+                 .fullScreenCover(isPresented: $navigateToLogin) {
+                                     LoginView()
+                                 }
             
-        
+               
+               
+                
+                .navigationTitle("Profile")
+            
+            }
+
+          
+            .onAppear{
+                    DispatchQueue.main.asyncAfter(deadline: .now()+0.5){
+                        viewModel.getUserInfo()
+                    }
+                }
+        }
+    }
 }
 
 struct MyAccountView_Previews: PreviewProvider {
     static var previews: some View {
-        MyAccountView()
+        Group {
+            MyAccountView()
+                
+          
+        }
     }
 }

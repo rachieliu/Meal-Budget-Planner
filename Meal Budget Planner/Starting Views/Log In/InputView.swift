@@ -4,7 +4,7 @@
 //
 //  Created by Rachel Liu on 2/12/24.
 
-// <-----------------------NOT BEING USED ------------------------->
+//
 
 import SwiftUI
 
@@ -32,15 +32,9 @@ struct InputView: View {
                 
             }
             Divider()
-            
-           /* if let error = validationError{
-                Text(error)
-                    .foregroundColor(.red)
-                    .font(.footnote)
-            }
-            */
+   
         }
-        //.padding(.horizontal)
+      
     }
 }
 

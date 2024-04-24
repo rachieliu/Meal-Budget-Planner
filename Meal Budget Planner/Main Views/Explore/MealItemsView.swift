@@ -7,94 +7,92 @@
 
 import SwiftUI
 
-struct MealItemsView: View {
+
+struct MealItemView: View {
     
-    private var homeGridItems: [GridItem] = [
-        .init(.flexible())
-    ]
+    @ObservedObject var viewModel = ExploreViewModel()
+
+    let mealItem: MealItem
+    @Binding var isExpanded: Bool
+    @Binding var isFavorite: Bool
+
     
     var body: some View {
-        
-        NavigationView {
-            ScrollView {
-                VStack{
-                    Text("BREAKFAST")
-                    HStack(alignment: .top) {
-                        LazyVGrid(columns: homeGridItems) {
-                            breakfastimageList
-                        }
-                        LazyVGrid(columns: homeGridItems) {
-                            breakfastimageList
-                        }
-                    }
-                    Text("LUNCH")
-                    HStack(alignment: .top) {
-                        LazyVGrid(columns: homeGridItems) {
-                            lunchimageList
-                        }
-                        LazyVGrid(columns: homeGridItems) {
-                            lunchimageList
-                        }
-                    }
-                    Text("DINNER")
-                    HStack(alignment: .top) {
-                        LazyVGrid(columns: homeGridItems) {
-                            dinnerimageList
-                        }
-                        LazyVGrid(columns: homeGridItems) {
-                            dinnerimageList
-                        }
-                    }
-                    
-                }
+        VStack {
+            
+            ZStack(alignment: .topLeading) {
+                // Meal image
+                Image(mealItem.imageName)
+                    .resizable()
+                    .clipped()
+                    .clipShape(RoundedRectangle(cornerRadius: 15))
+                    .frame(width: 180, height: isExpanded ? 250 : CGFloat.random(in: 180...250), alignment: .center)
+                    .overlay(
+                        Button(action: {
+                              isExpanded.toggle()
+                          }) {
+                              Image(systemName: isExpanded ? "chevron.up" : "chevron.down")
+                                  .foregroundColor(.white)
+                                  .padding(8)
+                                  .background(Color.black.opacity(0.5))
+                                  .clipShape(Circle())
+                                  .padding(8)
+                          }
+                          .offset(x: 60, y: 0), // Adjust the offset for proper positioning
+                          alignment: .top // Align the overlay to the top of the image
+                    )
                 
+                
+                // Heart icon
+                Button(action: {
+                    toggleFavorite()
+                }) {
+                    Image(systemName: isFavorite ? "heart.fill" : "heart")
+                          .foregroundColor(isFavorite ? Color("FavoritesClick") : .gray)
+                          .padding(5)
+                          .background(Color.white.opacity(0.8))
+                          .clipShape(Circle())
+                          .overlay(Circle().stroke(Color.gray.opacity(0.5), lineWidth: 0.5))
+                }
+                .padding(10)
+                .offset(x: -4, y: -4)
             }
-            .navigationBarHidden(true)
-           
+            if isExpanded {
+                ScrollView {
+                    VStack(alignment: .leading) {
+                        
+                        Text("Meal Details")
+                            .font(.headline)
+                            .padding(.bottom, 5)
+                        
+                        Text("Description goes here...")
+                            .font(.subheadline)
+                    }
+                    .padding()
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                }
+            }
+          
+            
         }
-        
-        
+            
     }
-}
-extension MealItemsView{
-    
-    
-    private var breakfastimageList: some View {
-        ForEach(0...2, id: \.self) { _ in
-            Image("proteinsmoothie")
-                .resizable()
-                .clipped()
-                .clipShape(RoundedRectangle(cornerRadius: 15))
-                .frame(width: 180, height: CGFloat.random(in: 180...300), alignment: .center)
-        }
-    }
-    private var lunchimageList: some View {
-        ForEach(0...2, id: \.self) { _ in
-            Image("bfastbagel")
-                .resizable()
-                .clipped()
-                .clipShape(RoundedRectangle(cornerRadius: 15))
-                .frame(width: 180, height: CGFloat.random(in: 180...300), alignment: .center)
-        }
-    }
-    private var dinnerimageList: some View {
-        ForEach(0...2, id: \.self) { _ in
-            Image("bfastburrito")
-                .resizable()
-                .clipped()
-                .clipShape(RoundedRectangle(cornerRadius: 15))
-                .frame(width: 180, height: CGFloat.random(in: 180...300), alignment: .center)
-        }
-    }
+    private func toggleFavorite() {
+         isFavorite.toggle()
+         if isFavorite {
+             print("Meal added to favorites: \(mealItem.name)")
+         } else {
+             print("Meal removed from favorites: \(mealItem.name)")
+         }
+     }
 }
 
-struct MealItemsView_Previews: PreviewProvider {
-    
-    
-    
-    
+
+struct MealItemView_Previews: PreviewProvider {
     static var previews: some View {
-        MealItemsView()
+        let mealItem = MealItem(name: "Your Meal Name", imageName: "yourImageName", isFavorite: false)
+        let mealItemState = MealItemViewState(isExpanded: false, isFavorite: false)
+        return MealItemView(mealItem: mealItem, isExpanded: .constant(mealItemState.isExpanded), isFavorite: .constant(mealItemState.isFavorite))
     }
 }
 

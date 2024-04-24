@@ -154,20 +154,7 @@ struct AllMealsView: View {
                     }
                     
                 }
-                       /* LazyVGrid(columns: [GridItem(.adaptive(minimum: 100))]) { // You can adjust the minimum width as needed
-                            ForEach(breakfastImageNames, id: \.self) { imageName in
-                                if let image = UIImage(named: imageName) { // Assuming images are in Assets catalog
-                                    Image(uiImage: image)
-                                        .resizable()
-                                        .clipped()
-                                        .clipShape(RoundedRectangle(cornerRadius: 15))
-                                        //.aspectRatio(contentMode: .fill)
-                                        .frame(width: 180, height: CGFloat.random(in: 180...300), alignment: .center)
-                                        .cornerRadius(10)
-                                        .padding(4)
-                                }
-                            }
-                        }*/
+                       
             }
         }
         //.padding()

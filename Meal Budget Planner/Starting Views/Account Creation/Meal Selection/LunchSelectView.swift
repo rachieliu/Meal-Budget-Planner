@@ -10,7 +10,7 @@ import Firebase
 class LunchSelectionViewModel: ObservableObject {
     
     var ref: DatabaseReference!
-    
+    var userBudget = 0
     init(){
         ref = Database.database().reference()
     }
@@ -18,7 +18,8 @@ class LunchSelectionViewModel: ObservableObject {
     
     @Published var selectedMeals: Set<String> = Set()
     @Published var showAlert: Bool = false
-    @Published var mealOptions: [String: String] = [:]
+    @Published var mealOptions: [String: (id: String, recipe: String, calories: String)] = [:]
+    @Published var isLoading: Bool = false
     
     
 
@@ -38,37 +39,60 @@ class LunchSelectionViewModel: ObservableObject {
         }
     
     func getLunchMeals() {
-        ref.child("MEALS").queryOrdered(byChild: "Type").queryEqual(toValue: "Breakfast").observeSingleEvent(of: .value) { (snapshot) in
-            if snapshot.exists() {
-                // Iterate through each child snapshot to access individual meals
-                for child in snapshot.children {
-                    let mealSnapshot = child as! DataSnapshot
-                    let mealID = mealSnapshot.key
-                    let mealName = mealSnapshot.childSnapshot(forPath: "Meal Name").value as? String ?? "Unknown"
-                    //let mealData = mealSnapshot.value as! [String: Any]
-                    
-                    // Here you can process each breakfast meal as needed
-                    print("Meal ID: \(mealID)")
-                    print("Meal Name: \(mealName)")
-                    //print("Meal Data: \(mealData)")
-                    
-                    //self.selectedMeals.insert(mealName)
-                    DispatchQueue.main.async{
-                        self.mealOptions[mealName] = mealID
-                    }
-                    
-                    
-                }
+        mealOptions.removeAll()
+        let userNum = UserManager.shared.userID
+        print("U: \(userNum)")
+        
+        //get users budget Selection
+        let userBudgetRef = ref.child("Users").child(userNum).child("Budget")
+        // Retrieve the value of the budget
+        userBudgetRef.observeSingleEvent(of: .value) { (snapshot) in
+            if let budget = snapshot.value as? Int {
+                print("\(userNum)'s budget is: \(budget)")
+                self.userBudget = budget
             } else {
-                print("No lunch meals found")
+                print("Budget not found for \(userNum)")
             }
         }
+        
+        let mealref = Database.database().reference().child("MEALS")
+            
+            // Query meals with type "Breakfast"
+            mealref.queryOrdered(byChild: "Type").queryEqual(toValue: "Lunch").observeSingleEvent(of: .value) { (snapshot) in
+                guard snapshot.exists() else {
+                    print("No meals found for type 'Lunch'")
+                    return
+                }
+                
+                for child in snapshot.children {
+                    let mealSnapshot = child as! DataSnapshot
+                    let mealID = mealSnapshot.childSnapshot(forPath: "Meal ID").value as? Int ?? 0
+                    let mealName = mealSnapshot.childSnapshot(forPath: "Meal Name").value as? String ?? "Unknown"
+                    let recipeName = mealSnapshot.childSnapshot(forPath: "Recipe").value as? String ?? "Unknown"
+                    let totalCalories = mealSnapshot.childSnapshot(forPath: "Total Calories ").value as? Int ?? 0
+                    
+                    let mealBudget = mealSnapshot.childSnapshot(forPath: "Budget").value as? Int ?? 0
+                    
+                    // Check if the meal's budget matches the user's budget
+                    if mealBudget == self.userBudget {
+                        print("Meal ID: \(mealID), Meal Name: \(mealName), Recipe: \(recipeName), total Calories: \(totalCalories)")
+                        
+                        
+                        DispatchQueue.main.async{
+                            self.mealOptions[mealName] = (id: String(mealID), recipe: recipeName, calories: String(totalCalories))
+                            //self.mealOptions[mealName] = String(mealID)
+                            
+                        }
+                    }
+                }
+                self.isLoading = false
+            }
     }
     
     func storeSelectedMeals(selectedMeals : Set<String>){
         
         var nOfUser = 0
-        var lunch = selectedMeals.joined(separator: ", ")
+        let lunch = selectedMeals.joined(separator: ", ")
         
         
         let userRef = ref.child("Users")
@@ -93,11 +117,8 @@ class LunchSelectionViewModel: ObservableObject {
             
         
     }
-    
-    
-    
-    
-    
+
+
     
 }
 
@@ -116,27 +137,44 @@ struct LunchSelectView: View {
             ZStack {
                 Color.white.edgesIgnoringSafeArea(.all)
                 VStack{
-                    Button {
-                        self.presentationMode.wrappedValue.dismiss()
+                    HStack{
+                        Button {
+                            self.presentationMode.wrappedValue.dismiss()
+                            
+                        } label: {
+                            Image(systemName: "arrowshape.backward.fill")
+                        }
+                        .font(.system(size:20))
+                        .foregroundColor(Color("GreenBlue"))
                         
-                    } label: {
-                        Image(systemName: "arrowshape.backward.fill")
+                        
+                        .padding(.leading,10)
+                        
+                        .padding(.trailing,300)
+                        
                     }
-                    .font(.system(size:20))
-                    .foregroundColor(.orange)
-                    
-                    
-                    .padding(.leading,10)
-                    
-                    .padding(.trailing,300)
+                    Spacer()
             
                     
             
                     VStack(spacing: 15){
-                        Text("Let's plan your meals for the week")
+                        ZStack {
+                            Rectangle()
+                                .foregroundColor(Color("PrimaryColor"))
+                                .cornerRadius(20)
+                                .padding(.horizontal, 10)
+                                .frame(height: 60)
+                            Text("Let's plan your meals for the week")
+                                .foregroundColor(.white)
+                                .fontWeight(.bold)
+                                .font(.system(size: 20))
+                                .padding()
+                        }
+                        
+                        
                         HStack(spacing: 3){
                             Text("Select 3 Meals for Lunch")
-                                .foregroundColor(Color("ThirdColor"))
+                                .foregroundColor(Color("PrimaryColor"))
                                 .fontWeight(.bold)
                                 .font(.system(size:25))
                         }
@@ -148,63 +186,87 @@ struct LunchSelectView: View {
                     
                     
                     ScrollView(.horizontal){
-                        HStack{
-                            ForEach(viewModel.mealOptions.keys.sorted(),id: \.self){ meal in
-                                ExpandableView(thumbnail: ThumbnailView {
+                        HStack(spacing:20){
+                            ForEach(viewModel.mealOptions.keys.sorted(), id: \.self) { mealName in
+                                if let mealInfo = viewModel.mealOptions[mealName] {
+                                    let id = mealInfo.id
+                                    let recipe = mealInfo.recipe
+                                    let calories = mealInfo.calories
                                     
-                                    VStack() {
-                                        Image(viewModel.mealOptions[meal]!)
+                                    ExpandableView(thumbnail: ThumbnailView {
+                                        VStack() {
+                                            Text(mealName)
+                                                .frame(width: 200, height: 50)
+                                                .foregroundColor(Color("Chocolate"))
+                                                .font(.custom("ArialRoundedMTBold", size: 20))
+                                                .background(
+                                                    RoundedRectangle(cornerRadius: 10)
+                                                        .fill(Color.white)
+                                                )
+                                                .padding(.horizontal, 30)
+                                                .padding(.top, 30)
+                                            Image(id)
+                                                .resizable()
+                                                .aspectRatio(contentMode: .fit)
+                                                .frame(width: 250, height: 250)
+                                                .padding(.horizontal)
+                                                .padding(.top)
+                                                .padding(.bottom)
+                                        }
+                                        .padding(.bottom)
+                                    }, expanded: ExpandedView{
+                                        VStack(spacing:10) {
+                                            Image(id)
+                                                .resizable()
+                                                .aspectRatio(contentMode: .fit)
+                                                .frame(maxWidth: .infinity, maxHeight: 100)
+                                                .overlay(
+                                                    RoundedRectangle(cornerRadius: 10)
+                                                        .stroke(viewModel.selectedMeals.contains(mealName) ? Color.clear : Color.clear, lineWidth: 2)
+                                                )
+                                            Text(mealName)
+                                                .frame(maxWidth: .infinity,maxHeight: 50, alignment: .center)
+                                                .foregroundColor(Color("Chocolate"))
+                                                .font(.custom("ArialRoundedMTBold", size: 20))
+                                                .background(
+                                                    RoundedRectangle(cornerRadius: 10)
+                                                        .fill(Color.white)
+                                                )
+                                                .padding(.horizontal)
+                                            
+                                            Text("Recipe: \(recipe)")
+                                                .frame(maxWidth:300, alignment: .center)
+                                                .foregroundColor(.black)
+                                                .font(.system(size: 18))
+                                                .padding(.horizontal)
+                                            
+                                            Text("Calories: \(calories)")
+                                                .foregroundColor(.black)
+                                                .font(.system(size: 18))
+                                                .padding(.horizontal)
+                                            Spacer()
+                                        }
+                                        .padding()
+                                        /*.onAppear {
+                                            viewModel.getRecipeDetails(for: id)
+                                        }*/
+                                    }, thumbnailViewBackgroundColor: Color("GreyTone").opacity(0.7), expandedViewBackgroundColor: Color("BabyBlue"))
+                                    .padding(.leading, 10)
+                                    
+                                    Button(action: {
+                                        viewModel.toggleMealSelection(mealName)// Toggle the selection state when tapped
+                                    }) {
+                                        Image(systemName: "plus.circle.fill")
                                             .resizable()
                                             .aspectRatio(contentMode: .fit)
-                                            .frame(width: 150, height: 300)
-                                        Text(meal)
-                                            .frame(alignment: .leading)
-                                              .foregroundColor(Color("Color1"))
-                                              .font(.custom("ArialRoundedMTBold", size: 20))
-                                            
+                                            .frame(width: 40, height: 40)
+                                            .foregroundStyle(viewModel.selectedMeals.contains(mealName) ? Color.teal : Color.gray)
                                     }
-                                    .padding()
-                                },expanded: ExpandedView{
-                                    VStack(spacing:10) {
-                                        Image(viewModel.mealOptions[meal]!)
-                                            .resizable()
-                                            .aspectRatio(contentMode: .fit)
-                                            .frame(width: 50, height: 50)
-                                            
-                                        Text(meal)
-                                              .frame(maxWidth: .infinity, alignment: .leading)
-                                              .foregroundColor(Color("PrimaryColor"))
-                                              .font(.custom("ArialRoundedMTBold", size: 28))
-                                          
-                                          /*Text(mealData)
-                                              .font(.custom("ArialRoundedMTBold", size: 14))
-                                              .foregroundColor(Color("PrimaryColor"))*/
-                                          
-                                          Text("Yummy yummy Yummy")
-                                              .font(.custom("ArialRoundedMT", size: 14))
-                                              .foregroundColor(Color("PrimaryColor"))
-                                        
-                                        Spacer()
-                                    }
-                                    .padding()
-                                }, thumbnailViewBackgroundColor: Color("Gray").opacity(0.7), expandedViewBackgroundColor: Color("Gray"))
-                                Button(action: {
-                                    viewModel.toggleMealSelection(meal)// Toggle the selection state when tapped
-                                    
-                                }){
-                                    Image(systemName:"plus.circle.fill")
-                                        .resizable()
-                                        .aspectRatio(contentMode: .fit)
-                                        .frame(width: 40, height: 40)
-                                        .foregroundStyle(viewModel.selectedMeals.contains(meal) ? Color.teal : Color.gray)
-                                        
-                                        
-                                    
-           
+                                    .padding(.top, 300)
+                                    .padding(.leading, -90)
                                 }
-                                .padding(.trailing, -30)
-                                
-                        }
+                            }
+                            .padding(.horizontal ,7)
                         
                   
                             
@@ -251,8 +313,16 @@ struct LunchSelectView: View {
                     .padding(EdgeInsets(top: 0, leading: 300, bottom: 20, trailing: 20))
                                     
                 }
+                if viewModel.isLoading {
+                    ProgressView("Loading...")
+                        .progressViewStyle(CircularProgressViewStyle())
+                }
             }
-        }.onAppear{viewModel.getLunchMeals()}
+        }.onAppear{
+            DispatchQueue.main.asyncAfter(deadline: .now()+1){
+                viewModel.getLunchMeals()
+            }
+        }
 }
 }
 

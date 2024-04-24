@@ -33,11 +33,9 @@ struct WelcomeView: View {
                     
                     Spacer()
                     
-                    //coorelated with navigation view, navigation link defines the buttons to go to next page
-                    
+           
                     NavigationLink(
-                        
-                    
+        
                         
                         destination: CreateAccountView()
                         .navigationBarHidden(true),
@@ -45,7 +43,7 @@ struct WelcomeView: View {
                             PrimaryButton(title: "Get Started")
                                 
                         })
-                    
+                    //To Log in
                     NavigationLink(
                         destination: LoginView().navigationBarHidden(true),
                         label: {
@@ -57,7 +55,6 @@ struct WelcomeView: View {
                                 .frame(maxWidth: .infinity)
                                 .background(Color.gray)
                                 .cornerRadius(50.0)
-                                //.shadow(color:   Color.black.opacity(0.4), radius: 60, x: 0.0, y: 16)
                                 .padding(.bottom, 50)
                                 
                         })
@@ -84,10 +81,7 @@ struct WelcomeView_Previews: PreviewProvider {
         Group {
             WelcomeView()
                 .previewInterfaceOrientation(.portrait)
-            /*WelcomeView()
-                .previewInterfaceOrientation(.landscapeLeft)
-            WelcomeView()
-                .previewInterfaceOrientation(.landscapeLeft)*/
+     
         }
     }
 }

@@ -6,6 +6,11 @@
 //
 
 import SwiftUI
+struct CombinedBox: Identifiable {
+    let id: Int
+    let title: String
+    let image: String
+}
 
 struct Box: Identifiable {
     let id: Int
@@ -14,70 +19,60 @@ struct Box: Identifiable {
 }
 
 struct ExploreView: View {
-    //@State private var selectedTab: Int = 0 // Define selectedTab here
+    
+    //State tracking
     @State private var selectedBoxId: Int? = nil
     
     let boxes: [Box] = [
-        Box(id: 0, title: "Breakfast", image: "bfastbagel"),
-        Box(id: 1, title: "Lunch", image: "bfastburrito"),
-        Box(id: 2, title: "Dinner", image: "proteinsmoothie")
+        Box(id: 0, title: "All", image: "1b5"),
+        Box(id: 1, title: "Breakfast", image: "2b5"),
+        Box(id: 2, title: "Lunch", image: "4l1"),
+        Box(id: 3, title: "Dinner", image: "3d4")
     ]
     
     var body: some View {
         TabView {
-            ForEach(boxes.indices) { index in
+            ForEach(0..<4) { index in
                 NavigationView {
                     VStack(spacing: 0) {
-                        ScrollView {
+                        ScrollView(.horizontal) {
                             HStack(spacing: 20) {
                                 ForEach(boxes) { box in
                                     Button(action: {
                                         // Select the corresponding tab
+                                        print("Selected box ID:", box.id)
                                         self.selectedBoxId = box.id
                                     }) {
-                                        BoxView(box: box)
+                                        BoxView(box: box, isSelected: self.selectedBoxId == box.id)
+                                        
                                     }
-                                    .foregroundColor(self.selectedBoxId == box.id ? .orange : .black)
+                                   
                                 }
                             }
                             .padding()
                         }
+                        .padding()
                         
                     
                         VStack{
-                        // Display content based on the selected tab
-                            if selectedBoxId != nil {
-                                switch index {
-                                case 0:
-                                    if let selectedBoxId = selectedBoxId, selectedBoxId == 0 {
-                                        BreakfastItemsView()
-                                    }
-                                    else{
-                                        EmptyView()
-                                    }
-                                case 1:
-                                    if let selectedBoxId = selectedBoxId, selectedBoxId == 1 {
-                                        LunchItemsView()
-                                    }
-                                    else{
-                                        EmptyView()
-                                    }
-                                case 2:
-                                    if let selectedBoxId = selectedBoxId, selectedBoxId == 2 {
-                                        DinnerItemsView()
-                                    }
-                                    else{
-                                        EmptyView()
-                                    }
-                                default:
-                                    EmptyView()
-                                }
+                            
+                            
+                            // Display content based on the selected tab
+                             if let selectedBoxId = self.selectedBoxId {
+                                 if selectedBoxId == 0 {
+                                     AllMealsView()
+                                 } else if selectedBoxId == 1 {
+                                     BreakfastItemsView()
+                                 } else if selectedBoxId == 2 {
+                                     LunchItemsView()
+                                 }else if selectedBoxId == 3 {
+                                     DinnerItemsView()
+                                 }
+                            
+                           
                             }
                         }
-                        .padding(.top,-100)
-                            
-                        
-                        //Spacer()
+                      
                     }
                     .navigationBarTitle(Text("Explore"))
                     //.ignoresSafeArea()
@@ -86,46 +81,40 @@ struct ExploreView: View {
             }
         }
         
-        .onAppear {
+       .onAppear {
             // Set selectedBoxId to the id of Breakfast box when ExploreView appears
             self.selectedBoxId = 0
         }
         .edgesIgnoringSafeArea(.bottom)
        // .tabViewStyle(PageTabViewStyle())
     }
+    //.edgesIgnoringSafeArea(.bottom)
 }
 
-struct BreakfastView: View {
-    var body: some View {
-        Text("Breakfast Detail View")
-    }
-}
 
-struct LunchView: View {
-    var body: some View {
-        Text("Lunch Detail View")
-    }
-}
-
-struct DinnerView: View {
-    var body: some View {
-        Text("Dinner Detail View")
-    }
-}
 
 struct BoxView: View {
     let box: Box
-    
+    let isSelected: Bool
     var body: some View {
         VStack {
             Image(box.image)
                 .resizable()
                 .cornerRadius(12)
-                .frame(width: 80, height: 80)
+                .frame(width: isSelected ? 90 : 80, height: isSelected ? 90 : 80) // Increase size when selected
+                .scaleEffect(isSelected ? 1.2 : 1.0)
             Text(box.title)
                 .font(.subheadline)
-                .fontWeight(.bold)
+                .fontWeight(isSelected ? .bold : .regular) // Increase font weight when selected
+                .padding(.top, 10)
                 .foregroundColor(.black)
+                .overlay(
+                    Rectangle()
+                        .frame(height: 4) // Adjust the height of the underline
+                        .padding(.top, 35) // Adjust the position of the underline
+                        .foregroundColor(isSelected ? .pink : .clear) // Set the color of the underline
+                )
+                .scaleEffect(isSelected ? 1.2 : 1.0) // Increase scale when selected
         }
     }
 }

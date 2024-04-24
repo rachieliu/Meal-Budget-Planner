@@ -16,24 +16,13 @@ struct HeaderView: View {
                     .resizable()
                     .frame(width: 150, height: 120)
                     .padding(.top, 50)
-                    //.padding(.leading, 60) // Adjusted padding for right spacing
+                   
                Spacer()
-                /*
-                NavigationLink(destination: MyAccountView()){
-                    Image("Account")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .foregroundColor(.black)
-                        .frame(width: 40, height: 40)
-                        .background(Color("PrimaryColor"))
-                        .clipShape(Circle())
-                }*/
+                
             }
-           // .padding(.horizontal)
-            //.padding(.top, -100)
+          
         }
-        //.edgesIgnoringSafeArea(.top)
-        
+       
         
         
     }

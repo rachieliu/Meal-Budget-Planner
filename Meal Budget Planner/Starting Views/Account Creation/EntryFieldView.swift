@@ -1,4 +1,5 @@
 import SwiftUI
+import Combine
 
 struct EntryFieldView: View {
    
@@ -7,12 +8,43 @@ struct EntryFieldView: View {
     var prompt: String
     @Binding var field: String
     var isSecure = false
+    @State private var isExpanded = false
+    
+    let symbolPredicate = NSPredicate(format: "SELF MATCHES %@", "^[^<>&\"]*$") // Predicate to check for invalid symbols
+    
+    
     var body: some View {
         VStack(alignment: .leading) {
-            Text(title)
-                .foregroundColor(Color(.darkGray))
-                .fontWeight(.semibold)
-                .font(.footnote)
+            HStack{
+                Text(title)
+                    .foregroundColor(Color(.darkGray))
+                    .fontWeight(.semibold)
+                    .font(.footnote)
+                    .padding(.leading)
+                Spacer()
+                // DisclosureGroup for expanding/ compressing help message
+                if title == "Email" || title == "Password" || title == "Name" || title == "Confirm Password"{
+                    DisclosureGroup(
+                        isExpanded: $isExpanded,
+                        content: {
+                            Text(prompt)
+                                .font(.system(size:10))
+                                .foregroundColor(.blue)
+                                .multilineTextAlignment(.trailing)
+                            //.padding(.trailing)
+                        },
+                        label: {
+                            Image(systemName: isExpanded ? "info.circle" : "info.circle")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 9, height: 9)
+                                .foregroundColor(.blue)
+                                .padding(.trailing)
+                        }
+                    )
+                }
+            }
+            
             
             HStack {
                 
@@ -21,10 +53,22 @@ struct EntryFieldView: View {
                 if isSecure {
                     SecureField(placeholder, text: $field)
                         .font(.system(size: 14))
+                        .onReceive(Just(field)) { newValue in
+                            let filtered = newValue.filter { symbolPredicate.evaluate(with: String($0)) }
+                            if filtered != newValue {
+                                field = filtered
+                            }
+                        }
                         
                 } else {
                     TextField(placeholder, text: $field)
                         .font(.system(size: 14))
+                        .onReceive(Just(field)) { newValue in
+                            let filtered = newValue.filter { symbolPredicate.evaluate(with: String($0)) }
+                            if filtered != newValue {
+                                field = filtered
+                            }
+                        }
                 }
             }.autocapitalization(.none)
             .padding(8)
@@ -33,11 +77,14 @@ struct EntryFieldView: View {
             Divider()
            
             
-            Text(prompt)
-                .fixedSize(horizontal: false, vertical: true)
-                .font(.system(size:10))
-                .foregroundColor(.gray)
+            
                 
+        }
+        .onTapGesture {
+            // Toggle expansion state on tap
+            withAnimation {
+                isExpanded.toggle()
+            }
         }
     }
 }

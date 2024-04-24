@@ -43,6 +43,17 @@ class BudgetSelectViewModel: ObservableObject{
             
                     let userNum = "User "  + String(nOfUser)
             
+            guard budget75 || budget100 || budget125 || budget150 else {
+                print("No budget option selected")
+                return
+            }
+            
+            // Validate that only one budget option is selected
+            guard [budget75, budget100, budget125, budget150].filter({ $0 }).count == 1 else {
+                print("Multiple budget options selected")
+                return
+            }
+            
             
             if(budget75 == true){
                 budget = 75

@@ -3,17 +3,82 @@
 //  Meal Budget Planner
 //
 //  Created by Rachel Liu on 3/20/24.
-//
 
+
+
+import Foundation
+import Firebase
+
+
+class ExploreViewModel: ObservableObject{
+    
+    var ref: DatabaseReference!
+    
+    
+    init(){
+        ref = Database.database().reference()
+    }
+    
+    @Published var mealOptions: [String: (id: String, recipe: String, calories: String)] = [:]
+    
+    
+    func getBreakfastMeals() {
+        mealOptions.removeAll()
+        let userNum = UserManager.shared.userID
+        print("U: \(userNum)")
+        
+        
+        
+        let mealref = Database.database().reference().child("MEALS")
+            
+            // Query meals with type "Breakfast"
+            mealref.queryOrdered(byChild: "Type").queryEqual(toValue: "Breakfast").observeSingleEvent(of: .value) { (snapshot) in
+                guard snapshot.exists() else {
+                    print("No meals found for type 'Breakfast'")
+                    return
+                }
+                
+                for child in snapshot.children {
+                    let mealSnapshot = child as! DataSnapshot
+                    let mealID = mealSnapshot.childSnapshot(forPath: "Meal ID").value as? Int ?? 0
+                    let mealName = mealSnapshot.childSnapshot(forPath: "Meal Name").value as? String ?? "Unknown"
+                    let recipeName = mealSnapshot.childSnapshot(forPath: "Recipe").value as? String ?? "Unknown"
+                    let totalCalories = mealSnapshot.childSnapshot(forPath: "Total Calories ").value as? Int ?? 0
+                    
+                    let mealBudget = mealSnapshot.childSnapshot(forPath: "Budget").value as? Int ?? 0
+                    
+                   
+                        
+                        
+                    DispatchQueue.main.async{
+                        self.mealOptions[mealName] = (id: String(mealID), recipe: recipeName, calories: String(totalCalories))
+                        //self.mealOptions[mealName] = String(mealID)
+                        
+                    }
+                    
+                }
+                // Set loading state to false after meals are fetched
+            }
+    }
+    
+}
+
+//
 import SwiftUI
 
-
+struct MealItemViewState {
+    var isExpanded: Bool = false
+    var isFavorite: Bool = false
+}
 
 struct BreakfastItemsView: View {
+    //@ObservedObject var viewModel = ExploreViewModel()
     let breakfastImageNames = ["1b1", "1b2", "1b3", "1b4", "1b5", "2b1", "2b2", "2b3", "2b4", "2b5"]
     let breakfastImagesNames2 = ["3b1", "3b2", "3b3", "3b4", "3b5", "4b1", "4b2", "4b3", "4b4", "4b5"] // Changed image names
     
-    @State private var isMealExpanded = Array(repeating: false, count: 20)
+    @State private var mealItemStates: [MealItemViewState] = Array(repeating: MealItemViewState(), count: 20)
+    //@State private var favoriteItems: [MealItem] = []
+    
     private var homeGridItems: [GridItem] = [
         .init(.flexible())
     ]
@@ -25,10 +90,10 @@ struct BreakfastItemsView: View {
                     HStack(alignment: .top) {
                         
                         // First set of meal images
-                        
                         LazyVGrid(columns: homeGridItems) {
                             ForEach(0..<breakfastImageNames.count, id: \.self) { index in
-                                MealItemView(imageName: breakfastImageNames[index], isExpanded: $isMealExpanded[index])
+                                let mealItem = MealItem(name: "Breakfast \(index)", imageName: breakfastImageNames[index], isFavorite: self.mealItemStates[index].isFavorite) // Create a MealItem instance
+                                MealItemView(mealItem: mealItem, isExpanded: self.$mealItemStates[index].isExpanded, isFavorite: self.$mealItemStates[index].isFavorite)
                             }
                         }
                         .frame(maxWidth: .infinity)
@@ -36,139 +101,23 @@ struct BreakfastItemsView: View {
                         // Second set of meal images
                         LazyVGrid(columns: homeGridItems) {
                             ForEach(0..<breakfastImagesNames2.count, id: \.self) { index in
-                                MealItemView(imageName: breakfastImagesNames2[index], isExpanded: $isMealExpanded[index + breakfastImageNames.count])
+                                let realIndex = index + breakfastImageNames.count
+                                let mealItem = MealItem(name: "Breakfast \(index)", imageName: breakfastImagesNames2[index], isFavorite: self.mealItemStates[realIndex].isFavorite)
+                                MealItemView(mealItem: mealItem, isExpanded: self.$mealItemStates[realIndex].isExpanded, isFavorite: self.$mealItemStates[realIndex].isFavorite)
                             }
                         }
                         .frame(maxWidth: .infinity)
+                        
                     }
                     
                     Spacer()
                 }
             }
-            .navigationBarTitle("Breakfast")
-        }
-    }
-    /*
-    var body: some View {
-        
-        NavigationView{
-            ScrollView {
-                VStack{
-                    HStack(alignment: .top){
-                        LazyVGrid(columns: homeGridItems){
-                            ForEach(breakfastImageNames, id: \.self){ imageName in
-                                if let image = UIImage(named:imageName){
-                                    Image(uiImage: image)
-                                        .resizable()
-                                        .clipped()
-                                        .clipShape(RoundedRectangle(cornerRadius: 15))
-                                        .frame(width: 180, height: CGFloat.random(in: 180...250), alignment: .center)
-                                }
-                                
-                            }
-                            
-                            
-                        }
-                        .frame(maxWidth: .infinity)
-                        LazyVGrid(columns: homeGridItems) {
-                            ForEach(breakfastImagesNames2, id: \.self){ imageName in
-                                if let image = UIImage(named:imageName){
-                                    Image(uiImage: image)
-                                        .resizable()
-                                        .clipped()
-                                        .clipShape(RoundedRectangle(cornerRadius: 15))
-                                        .frame(width: 180, height: CGFloat.random(in: 180...250), alignment: .center)
-                                }
-                                
-                            }
-                        }
-                        .frame(maxWidth: .infinity)
-                        
-                        
-                        
-                        
-                        
-                    }
-                    Spacer()
-                    
-                }
-                       /* LazyVGrid(columns: [GridItem(.adaptive(minimum: 100))]) { // You can adjust the minimum width as needed
-                            ForEach(breakfastImageNames, id: \.self) { imageName in
-                                if let image = UIImage(named: imageName) { // Assuming images are in Assets catalog
-                                    Image(uiImage: image)
-                                        .resizable()
-                                        .clipped()
-                                        .clipShape(RoundedRectangle(cornerRadius: 15))
-                                        //.aspectRatio(contentMode: .fill)
-                                        .frame(width: 180, height: CGFloat.random(in: 180...300), alignment: .center)
-                                        .cornerRadius(10)
-                                        .padding(4)
-                                }
-                            }
-                        }*/
-            }
-        }
-        //.padding()
-        
-    }*/
-}
-struct MealItemView: View {
-    let imageName: String
-    @Binding var isExpanded: Bool
-    
-    var body: some View {
-        VStack {
-            // Meal image
-            Image(imageName)
-                .resizable()
-                .clipped()
-                .clipShape(RoundedRectangle(cornerRadius: 15))
-                .frame(width: 180, height: isExpanded ? 250 : CGFloat.random(in: 180...250), alignment: .center)
-                .overlay(
-                    Button(action: {
-                        isExpanded.toggle()
-                    }) {
-                        Image(systemName: isExpanded ? "chevron.up" : "chevron.down")
-                            .foregroundColor(.white)
-                            .padding(8)
-                            .background(Color.black.opacity(0.5))
-                            .clipShape(Circle())
-                            .padding(8)
-                    }
-                    .offset(x: 60, y: 0), // Adjust the offset for proper positioning
-                    alignment: .top // Align the overlay to the top of the image
-                )
-            if isExpanded {
-                ScrollView {
-                    VStack(alignment: .leading) {
-                        Text("Meal Details")
-                            .font(.headline)
-                            .padding(.bottom, 5)
-                        
-                        Text("Description goes here...")
-                            .font(.subheadline)
-                    }
-                    .padding()
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                }
-            }
-            
-                           // Expandable icon
- /*           Image(systemName: isExpanded ? "chevron.up" : "chevron.down")
-                .foregroundColor(.blue)
-                .padding(.top, 5)
-            
-            // Meal details (displayed when expanded)
-            if isExpanded {
-                Text("Meal details go here...")
-                    .font(.subheadline)
-                    .foregroundColor(.black)
-            }*/
+           
         }
     }
 }
-
-
+   
 struct BreakfastItemsView_Previews: PreviewProvider {
     
     
@@ -178,4 +127,3 @@ struct BreakfastItemsView_Previews: PreviewProvider {
         BreakfastItemsView()
     }
 }
-

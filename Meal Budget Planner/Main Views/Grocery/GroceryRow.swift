@@ -5,14 +5,28 @@
 //  Created by Rachel Liu on 4/9/24.
 //
 
+
 import SwiftUI
 
 struct GroceryRow: View {
+    
+    let food: Food
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        HStack {
+            
+            Text(food.name)
+            
+            .padding(.leading, 20)
+            
+        }
     }
 }
 
-#Preview {
-    GroceryRow()
+struct GroceryRow_Previews: PreviewProvider {
+    static var previews: some View {
+        GroceryRow(food: Food(name: "Pizza", color: .red))
+    }
 }
+
+

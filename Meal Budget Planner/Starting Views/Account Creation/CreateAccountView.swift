@@ -9,19 +9,18 @@ import SwiftUI
 import Firebase
 import FirebaseCore
 
-class userData : ObservableObject{
-    @Published var userID: String = ""
-}
+
 struct CreateAccountView: View {
+    
+    
     @StateObject private var viewModel = SignUpViewModel()
-   
-  //  @State private var isButtonPressed = false // Track button press status
+    
     @State private var navigateToBudgetSelect = false // Track navigation status
 
     
     var body: some View {
         NavigationView {
-           // Color.white.edgesIgnoringSafeArea(.all)
+          
             VStack {
                 Image("Icon")
                     .resizable()
@@ -29,11 +28,14 @@ struct CreateAccountView: View {
                     .frame(width:150, height: 100)
                     .padding(.vertical, 32)
                 VStack {
+                    
+                    // Entry field for user's name
                     EntryFieldView( title: "Name",
                                     placeholder: "Enter your name",
                                     prompt: viewModel.userNamePrompt,
                                     field: $viewModel.userName)
                     
+                    // Entry field for user's email
                     EntryFieldView( title: "Email",
                                     placeholder: "name@example.com",
                                     prompt: viewModel.emailPrompt,
@@ -42,39 +44,36 @@ struct CreateAccountView: View {
                         .autocapitalization(.none)
                     
                    
-                    
+                    // Entry field for password
                     EntryFieldView( title: "Password",
                                     placeholder: "Enter your password",
                                     prompt: viewModel.passwordPrompt,
                                     field: $viewModel.password,
                                     isSecure: true)
                     
+                    
+                    // Entry field for re-enter password
                     EntryFieldView(title: "Confirm Password",
                                    placeholder: "Re-enter your password",
                                    prompt: viewModel.confirmPwPrompt,
                                    field: $viewModel.confirmPw,
                                    isSecure: true)
                     
-                    /*NavigationLink(
-                        destination: BudgetSelectView(),
-                        isActive: $navigateToBudgetSelect,
-                        label: {
-                            Text("CREATE ACCOUNT")
-                                .foregroundColor(.white)
-                                .padding(.vertical, 20)
-                                .padding(.horizontal)
-                                .background(Color("PrimaryColor"))
-                                .cornerRadius(10)
-                                .opacity(viewModel.canSubmit ? 1 : 0.6)
-                                .disabled(!viewModel.canSubmit)
-                        }
-                    )
-                    .onTapGesture {
-                        viewModel.createAccount(navigateToBudgetSelect: $navigateToBudgetSelect)
-                    }*/
                     
                     
+                    // Button to create account
                     Button(action: {
+                        
+                        // Check if all fields are valid
+                        guard viewModel.isFieldValid(viewModel.userName),
+                              viewModel.isFieldValid(viewModel.email),
+                              viewModel.isFieldValid(viewModel.password),
+                              viewModel.isFieldValid(viewModel.confirmPw) else {
+
+                            //error for invalid symbols
+                             viewModel.errorMessage = "Error: Invalid characters present in one or more fields"
+                            return
+                        }
                         viewModel.createAccount(navigateToBudgetSelect: $navigateToBudgetSelect)
                       
                     }) {
@@ -87,6 +86,14 @@ struct CreateAccountView: View {
                     .cornerRadius(10)
                     .opacity(viewModel.canSubmit ? 1 : 0.6)
                     .disabled(!viewModel.canSubmit)
+                    
+                    //dislpay error message
+                    if !viewModel.errorMessage.isEmpty {
+                        Text(viewModel.errorMessage)
+                            .foregroundColor(.red)
+                            .padding(.bottom, 5)
+                    }
+
                     
                     NavigationLink(
                         destination: BudgetSelectView().navigationBarHidden(true),

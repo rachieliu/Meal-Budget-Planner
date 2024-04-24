@@ -26,51 +26,53 @@ struct TabBarView: View {
     
     var body: some View {
         
-        TabView(selection: $selectedTab){
-            
-            GroceryListView()
-                 .tabItem {
+        HStack {
+            TabView(selection: $selectedTab){
+                
+                GroceryListView()
+                     .tabItem {
 
-                     Label("Grocery", systemImage: "cart")
-                 }
-                 .tag(Tab.grocery)
-            
-            ExploreView()
-                .tabItem {
+                         Label("Grocery", systemImage: "cart")
+                     }
+                     .tag(Tab.grocery)
+                
+                ExploreView()
+                    .tabItem {
 
-                    Label("Explore", systemImage: "network")
-                }
-                .tag(Tab.explore)
-            
-            HomeView()
-                 .tabItem {
+                        Label("Explore", systemImage: "network")
+                    }
+                    .tag(Tab.explore)
+                
+                HomeView()
+                     .tabItem {
 
-                     Label("My Meals", systemImage: "house")
-                 }
-                 .tag(Tab.home)
-            
-            FavoritesView()
-                .environmentObject(viewModel)
-                .tabItem{
-                    Label("Favorites", systemImage: "heart")
-                }
-                .tag(Tab.favorites)
-            
-            
-            
-             MyAccountView()
-                 .tabItem {
+                         Label("My Meals", systemImage: "house")
+                     }
+                     .tag(Tab.home)
+                
+                FavoritesView()
+                    .environmentObject(viewModel)
+                    .tabItem{
+                        Label("Favorites", systemImage: "heart")
+                    }
+                    .tag(Tab.favorites)
+                
+                
+                
+                 MyAccountView()
+                     .tabItem {
 
-                     Label("Settings", systemImage: "gearshape")
-                 }
-                 .tag(Tab.settings)
-            
-            
+                         Label("Settings", systemImage: "gearshape")
+                     }
+                     .tag(Tab.settings)
+                
+                
+            }
+            .navigationBarBackButtonHidden(true)
+            .edgesIgnoringSafeArea(.top)
+            .onAppear {
+                self.selectedTab = .home // home default selected tab
         }
-        .navigationBarBackButtonHidden(true)
-        .edgesIgnoringSafeArea(.top)
-        .onAppear {
-            self.selectedTab = .home // Set default selected tab
         }
         
        

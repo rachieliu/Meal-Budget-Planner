@@ -6,3 +6,12 @@
 //
 
 import Foundation
+
+struct MealItem: Identifiable {
+    let id = UUID()
+    let name: String
+    let imageName: String
+    var isFavorite: Bool = false
+}
+
+
