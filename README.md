@@ -1,4 +1,4 @@
-Finalized Code and Documents - Release v2.0.0
+Finalized Code and Documents located in Release v2.0.0
 
 
 Project Tracking [Project Tracking.pdf](https://github.com/rachieliu/Meal-Budget-Planner/files/15123958/Project.Tracking.pdf)
